@@ -28,12 +28,12 @@ class VotesAndComments extends React.Component {
             return value + Math.sign(vote.get('percent'));
         }, 0);
         let comments_tooltip = 'Sin respuestas aún. Click para responder.';
-        if (comments > 0) comments_tooltip = `${pluralize('Responses', comments, true)}. Click para responder.`;
+        if (comments > 0) comments_tooltip = `${pluralize('Respuestas', comments, true)}. Click para responder.`;
 
         return (
             <span className="VotesAndComments">
-                <span className="VotesAndComments__votes" title={pluralize('Votes', voters_count, true)}>
-                    <Icon name={voters_count > 1 ? 'voters' : 'voter'} />&nbsp;{voters_count}
+                <span className="VotesAndComments__votes" title={pluralize('Votos', voters_count, true)}>
+                    <Icon name={voters_count > 1 ? 'usuarios' : 'usuario'} />&nbsp;{voters_count}
                 </span>
                 <span className={'VotesAndComments__comments' + (comments === 0 ? ' no-comments' : '')}>
                      <Link to={commentsLink} title={comments_tooltip}>

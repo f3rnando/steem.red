@@ -58,7 +58,7 @@ class Witnesses extends React.Component {
                             {(rank < 10) && '0'}{rank++}
                             &nbsp;&nbsp;
                             <span className={classUp}>
-                                <a href="#" onClick={accountWitnessVote.bind(this, owner, !myVote)} title="Vote">{up}</a>
+                                <a href="#" onClick={accountWitnessVote.bind(this, owner, !myVote)} title="Votar">{up}</a>
                             </span>
                         </td>
                         <td>
@@ -83,7 +83,7 @@ class Witnesses extends React.Component {
                               <span>{/*className="Voting"*/}
                                   <span className="Voting__button Voting__button-up space-right Voting__button--upvoted">
                                       <a href="#" onClick={accountWitnessVote.bind(this, item, false)}
-                                          title="Vote">{up}</a>
+                                          title="Votar">{up}</a>
                                       &nbsp;
                                   </span>
                               </span>
@@ -99,10 +99,10 @@ class Witnesses extends React.Component {
             <div>
                 <div className="row">
                     <div className="column">
-                        <h2>Top Witnesses</h2>
+                        <h2>Testigos mas votados</h2>
                         <p>
-                            <strong>You have {witness_votes_count} votes remaining.</strong>
-                            You can vote for a maximum of 30 witnesses.
+                            <strong>Tenés {witness_votes_count} votos.</strong>
+                            Podés votar hasta un máximo de 30 testigos.
                         </p>
                     </div>
                 </div>
@@ -112,8 +112,8 @@ class Witnesses extends React.Component {
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Witness</th>
-                                    <th>Information</th>
+                                    <th>Testigo</th>
+                                    <th>Información</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,10 +121,10 @@ class Witnesses extends React.Component {
                             </tbody>
                         </table>
                         <hr/>
-                        <p>If you would like to vote for a witness outside of the top 50, enter the account name below to cast a vote.</p>
+                        <p>Si te gustaría votar un testigo fuera del top 50, ingresá el nombre de su cuenta abajo para emitir tu voto.</p>
                         <form>
                             <input type="text" style={{float: "left", width: "75%"}} value={customUsername} onChange={onWitnessChange} />
-                            <button className="darkbtn" onClick={accountWitnessVote.bind(this, customUsername, !(witness_votes ? witness_votes.has(customUsername) : null))}>Vote</button>
+                            <button className="darkbtn" onClick={accountWitnessVote.bind(this, customUsername, !(witness_votes ? witness_votes.has(customUsername) : null))}>Votar</button>
                         </form>
                         <br/>
                         {addl_witnesses}

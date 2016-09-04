@@ -70,10 +70,10 @@ class LoginForm extends Component {
             fields: ['username', 'password', 'saveLogin:bool'],
             initialValues: props.initialValues,
             validation: values => ({
-                username: ! values.username ? 'Required' : validate_account_name(values.username.split('/')[0]),
-                password: ! values.password ? 'Required' :
-                    values.password.length < 16 ? 'Password must be 16 characters or more' :
-                    PublicKey.fromString(values.password) ? 'You need a private password or key (not a public key)' :
+                username: ! values.username ? 'Obligatorio' : validate_account_name(values.username.split('/')[0]),
+                password: ! values.password ? 'Obligatorio' :
+                    values.password.length < 16 ? 'El password debe tener 16 caracteres o más.' :
+                    PublicKey.fromString(values.password) ? 'Necesitás un password privado o una llave (no una llave pública)' :
                     null,
             })
         })
@@ -93,7 +93,7 @@ class LoginForm extends Component {
         if (!process.env.BROWSER) {
             return <div className="row">
                 <div className="column">
-                    <p>Loading..</p>
+                    <p>Cargando..</p>
                 </div>
             </div>;
         }
@@ -101,9 +101,9 @@ class LoginForm extends Component {
             return <div className="row">
                 <div className="column">
                     <div className="callout alert">
-                        <h4>Cryptography test failed</h4>
-                        <p>We will be unable to log you in with this browser.</p>
-                        <p>The latest versions of <a href="https://www.google.com/chrome/">Chrome</a> and <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> are well tested and known to work with steemit.com.</p>
+                        <h4>Test criptográfico fallido</h4>
+                        <p>No podrás acceder con este browser.</p>
+                        <p>Las recientes versiones de <a href="https://www.google.com/chrome/">Chrome</a> y <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> están lo suficientemente probadas y funcionan bien con Steem.red.</p>
                     </div>
                 </div>
             </div>;
@@ -125,11 +125,11 @@ class LoginForm extends Component {
         const disabled = submitting || !valid;
 
         const title = loginBroadcastOperation ?
-            'Authenticate for this transaction' :
-            'Login to your Steem Account';
+            'Es necesario autenticarse para esta transacción' :
+            'Accedé a tu cuenta de Steem.red';
         const opType = loginBroadcastOperation ? loginBroadcastOperation.get('type') : null
         const authType = /vote|comment/.test(opType) ? 'Posting' : 'Active or Owner'
-        const submitLabel = loginBroadcastOperation ? 'Sign' : 'Login';
+        const submitLabel = loginBroadcastOperation ? 'Registrarme' : 'Acceder';
         let error = password.touched && password.error ? password.error : this.props.login_error
         if (error === 'owner_login_blocked') {
             error = <span>This password is bound to your account&apos;s owner key and can not be used to login to this site.
@@ -142,17 +142,17 @@ class LoginForm extends Component {
         if (msg) {
             if (msg === 'accountcreated') {
                 message =<div className="callout primary">
-                        <p>You account has been successfully created!</p>
+                        <p>Tu cuenta fue creada con éxito!</p>
                     </div>;
             }
             else if (msg === 'accountrecovered') {
                 message =<div className="callout primary">
-                    <p>You account has been successfully recovered!</p>
+                    <p>Tu cuenta fue recuperada con éxito!</p>
                 </div>;
             }
             else if (msg === 'passwordupdated') {
                 message = <div className="callout primary">
-                    <p>The password for `{username.value}` was successfully updated.</p>
+                    <p>El password para `{username.value}` fue actualizado correctamente.</p>
                 </div>;
             }
         }
@@ -166,21 +166,21 @@ class LoginForm extends Component {
                 method="post"
             >
                 <div>
-                    <input type="text" required placeholder="Enter your username" ref="username"
+                    <input type="text" required placeholder="Nombre de usuario" ref="username"
                         {...username.props} onChange={usernameOnChange} autoComplete="on" disabled={submitting} />
                     <div className="error">{username.touched && username.blur && username.error}&nbsp;</div>
                 </div>
 
                 <div>
-                    <input type="password" required ref="pw" placeholder="Password or WIF" {...password.props} autoComplete="on" disabled={submitting} />
+                    <input type="password" required ref="pw" placeholder="Password ó WIF" {...password.props} autoComplete="on" disabled={submitting} />
                     <div className="error">{error}&nbsp;</div>
                 </div>
                 {loginBroadcastOperation && <div>
-                    <div className="info">This operation requires your {authType} key (or use your master password).</div>
+                    <div className="info">Esta operación requiere tu llave {authType} (o usá tu password principal).</div>
                 </div>}
                 {!loginBroadcastOperation && <div>
                     <label htmlFor="saveLogin">
-                        Keep me logged in &nbsp;
+                        Mantener abierta mi sesión &nbsp;
                         <input id="saveLogin" type="checkbox" ref="pw" {...saveLogin.props} onChange={this.saveLoginToggle} disabled={submitting} /></label>
                 </div>}
                 <br />
@@ -189,7 +189,7 @@ class LoginForm extends Component {
                         {submitLabel}
                     </button>
                     {this.props.onCancel && <button type="button float-right" disabled={submitting} className="button hollow" onClick={onCancel}>
-                        Cancel
+                        Cancelar
                     </button>}
                 </div>
             </form>

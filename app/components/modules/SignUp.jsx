@@ -13,7 +13,7 @@ export default class SignUp extends React.Component {
             return <div className="row">
                 <div className="column">
                     <div className="callout alert">
-                        <p>Due to server maintenance we are running in read only mode. We are sorry for the inconvenience.</p></div>
+                        <p>Debido a operaciones de mantenimiento Steem.red está en modo lectura únicamente. Lamentamos los inconvenientes.</p></div>
                 </div>
             </div>;
         }
@@ -21,8 +21,8 @@ export default class SignUp extends React.Component {
         if (this.props.serverBusy || $STM_Config.disable_signups) {
             return <div className="row">
                 <div className="column callout" style={{margin: '20px', padding: '40px'}}>
-                    <p>Membership to Steemit.com is now under invitation only because of unexpectedly high sign up rate.
-                        Submit your email to get on the waiting list.</p>
+                    <p>La membresía de Steem.red es actualmente sólo por invitación debido a la alta demanda inesperada.
+                        Suscribite para recibir entrar a la lista de espera.</p>
                     <AddToWaitingList />
                 </div>
             </div>;
@@ -31,10 +31,9 @@ export default class SignUp extends React.Component {
         return <div className="SignUp">
             <div className="row">
                 <div className="column">
-                    <h3>Sign Up</h3>
-                    <p>Steemit funds each account with over {this.props.signup_bonus} worth of Steem Power; to prevent abuse, we
-                        require new users to login via social media.<br />
-                        Your personal information will be kept <a href="/privacy.html" target="_blank">private</a>.
+                    <h3>Registrarse</h3>
+                    <p>Steem.red inicia cada cuenta con aproximadamente {this.props.signup_bonus} en Steem Power; para prevenir el abuso se requiere a los nuevos usuarios que accedan a través de otra plataforma social.<br />
+                        Tu información personal se mantendrá <a href="/privacy.html" target="_blank">privada</a>.
                     </p>
                 </div>
             </div>
@@ -43,34 +42,34 @@ export default class SignUp extends React.Component {
                     <SvgImage name="facebook" width="64px" height="64px" />
                 </div>
                 <div className="column large-8">
-                    <a href="/connect/facebook" className="button SignUp--fb-button">Continue with Facebook</a>
+                    <a href="/connect/facebook" className="button SignUp--fb-button">Continuar con Facebook</a>
                 </div>
             </div>
             <div className="row">
             &nbsp;
             </div>
-            <div className="row">
+            <div className="row hidden">
                 <div className="column large-4 shrink">
                     <SvgImage name="reddit" width="64px" height="64px" />
                 </div>
                 <div className="column large-8">
-                    <a href="/connect/reddit" className="button SignUp--reddit-button">Continue with Reddit</a>
-                    <br /><span className="secondary">(requires positive Reddit comment karma)</span>
+                    <a href="/connect/reddit" className="button SignUp--reddit-button">Continuar con Reddit</a>
+                    <br /><span className="secondary">(Requiere karma de comentarios positivo en Reddit)</span>
                 </div>
             </div>
             <div className="row">
                 <div className="column">
                       <br />
-                    Don't have a Facebook or Reddit account? <br />
+                    No tenés cuenta en Facebook o Reddit? <br />
                     {this.state.waiting_list ? <AddToWaitingList /> : <a href="#" onClick={() => this.setState({waiting_list: true})}>
-                        <strong> Subscribe to get a notification when SMS confirmation is available.</strong>
+                        <strong> Suscribite para recibir un aviso cuando la confirmación via SMS esté disponible.</strong>
                     </a>}
                 </div>
             </div>
             <div className="row">
                 <div className="column">
                       <br />
-                    <p className="secondary">By verifying your account you agree to the Steemit <a href="/tos.html" target="_blank">terms and conditions</a>.</p>
+                    <p className="secondary">Al verificar tu cuenta aceptás los <a href="/tos.html" target="_blank">términos y condiciones</a> de Steem.red.</p>
                 </div>
             </div>
         </div>

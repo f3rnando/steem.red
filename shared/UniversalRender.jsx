@@ -71,7 +71,7 @@ async function universalRender({ location, initial_state, offchain }) {
     } catch (e) {
         console.error('Router error:', e.toString(), location);
         return {
-            title: 'Server error (500) - Steemit',
+            title: 'Error de servidor (500) - Steem.red',
             statusCode: 500,
             body: renderToString(<ErrorPage />)
         };
@@ -79,7 +79,7 @@ async function universalRender({ location, initial_state, offchain }) {
     if (error || !renderProps) {
         // debug('error')('Router error', error);
         return {
-            title: 'Page Not Found (404) - Steemit',
+            title: 'Página no encontrada (404) - Steem.red',
             statusCode: 404,
             body: renderToString(<NotFound />)
         };
@@ -187,8 +187,8 @@ async function universalRender({ location, initial_state, offchain }) {
     }
 
     return {
-        title: 'Steemit',
-        titleBase: 'Steemit - ',
+        title: 'Steem.red',
+        titleBase: 'Steem.red - ',
         meta,
         statusCode: status,
         body: Iso.render(app, server_store.getState())

@@ -77,7 +77,7 @@ class Post extends React.Component {
                         <div className="row">
                             <div className="column">
                                 <div className="PostFull">
-                                    <p onClick={this.showAnywayClick}>This post was hidden due to low ratings. <button style={{marginBottom: 0}} className="button hollow tiny float-right" onClick={this.showAnywayClick}>Show</button></p>
+                                    <p onClick={this.showAnywayClick}>Este post está oculto debido a puntajes bajos. <button style={{marginBottom: 0}} className="button hollow tiny float-right" onClick={this.showAnywayClick}>Mostrar</button></p>
                                 </div>
                             </div>
                         </div>
@@ -116,8 +116,8 @@ class Post extends React.Component {
         const negativeGroup = !stuffHidden ? null :
             (<div className="hentry Comment root Comment__negative_group">
                 {this.state.showNegativeComments ?
-                    <p onClick={this.toggleNegativeReplies}>Now showing comments with low ratings: <button style={{marginBottom: 0}} className="button hollow tiny float-right" onClick={this.toggleNegativeReplies}>Hide</button></p> :
-                    <p onClick={this.toggleNegativeReplies}>Comments were hidden due to low ratings. <button style={{marginBottom: 0}} className="button hollow tiny float-right" onClick={this.toggleNegativeReplies}>Show</button></p>
+                    <p onClick={this.toggleNegativeReplies}>Mostrando comentarios denunciados: <button style={{marginBottom: 0}} className="button hollow tiny float-right" onClick={this.toggleNegativeReplies}>Ocultar</button></p> :
+                    <p onClick={this.toggleNegativeReplies}>Algunos comentarios denunciados fueron ocultados. <button style={{marginBottom: 0}} className="button hollow tiny float-right" onClick={this.toggleNegativeReplies}>Mostrar</button></p>
                 }
             </div>
         );
@@ -154,9 +154,9 @@ class Post extends React.Component {
                 {!current_user && <div className="row">
                     <div className="column">
                       <div className="Post__promo">
-                          Authors get paid when people like you upvote their post. <br/>
-                          If you enjoyed what you read here, earn {signup_bonus} of Steem Power <br />
-                          when you <a onClick={showSignUp}>sign up</a> and vote for it.
+                          Los autores reciben pagos cuadno usuarios como vos votan sus posts. <br/>
+                          Si disfrutaste leer éste, ganate {signup_bonus} de Steem Power <br />
+                          por <a onClick={showSignUp}>registrarte</a> y votar.
                       </div>
                     </div>
                 </div>}
@@ -165,7 +165,7 @@ class Post extends React.Component {
                         <div className="Post_comments__content">
                             {positiveComments.length ?
                             (<div className="Post__comments_sort_order float-right">
-                                Sort Order: &nbsp;
+                                Ordenar por: &nbsp;
                                 <FoundationDropdownMenu menu={sort_menu} label={sort_order} dropdownPosition="bottom" dropdownAlignment="right" />
                             </div>) : null}
                             {positiveComments}

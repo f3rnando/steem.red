@@ -60,8 +60,8 @@ class TagsIndex extends React.Component {
                         <thead>
                         <tr>
                             <th>Tag</th>
-                            <th>Replies</th>
-                            <th>Payouts</th>
+                            <th>Respuestas</th>
+                            <th>Pagos</th>
                         </tr>
                         </thead>
                         <tbody>

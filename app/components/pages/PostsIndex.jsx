@@ -44,7 +44,7 @@ class PostsIndex extends React.Component {
     loadMore(last_post) {
         if (!last_post) return;
         let {accountname} = this.props.routeParams
-        let {category, order = constants.DEFAULT_SORT_ORDER} = this.props.routeParams;
+        let {category, order = 'trending30'} = this.props.routeParams;
         if (category === 'feed'){
             accountname = order.slice(1);
             order = 'by_feed';
@@ -57,21 +57,22 @@ class PostsIndex extends React.Component {
         this.setState({showSpam: !this.state.showSpam})
     }
     render() {
-        let {category, order = constants.DEFAULT_SORT_ORDER} = this.props.routeParams;
+        let {category, order = 'trending30'} = this.props.routeParams;
+        category = category || 'spanish';
         let topics_order = order;
         let posts = [];
         let emptyText = '';
         if (category === 'feed') {
             const account_name = order.slice(1);
             order = 'by_feed';
-            topics_order = 'trending30';
+            topics_order = 'trending';
             posts = this.props.global.getIn(['accounts', account_name, 'feed']);
-            emptyText = `Looks like ${account_name} hasnt followed anything yet!`;
+            emptyText = `Parece que ${account_name} aún no sigue a nadie`;
         } else {
             posts = this.getPosts(order, category);
         }
 
-        const status = this.props.status ? this.props.status.getIn([category || '', order]) : null;
+        const status = this.props.status ? this.props.status.getIn([category || 'spanish', order]) : null;
         const fetching = (status && status.fetching) || this.props.loading;
         const {showSpam} = this.state
 

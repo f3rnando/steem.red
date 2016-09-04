@@ -136,7 +136,7 @@ class Voting extends React.Component {
                 <CloseButton onClick={() => this.setState({showWeight: false})} />
                 <div className="clear Voting__about-flag">
                     <p>{ABOUT_FLAG}</p>
-                    <a href="#" onClick={this.voteDown} className="confirm_weight button outline" title="Flag">Denunciar</a>
+                    <a href="#" onClick={this.voteDown} className="confirm_weight button outline" title="Denunciar">Denunciar</a>
                 </div>
             </FoundationDropdown>
 
@@ -146,7 +146,7 @@ class Voting extends React.Component {
             return <span className="Voting">
                 <span className={classDown}>
                     {down_votes > 0 && <span className="Voting__button-downvotes">{down_votes}</span>}
-                    {votingDownActive ? down : <a href="#" onClick={flagClickAction} title="Flag">{down}</a>}
+                    {votingDownActive ? down : <a href="#" onClick={flagClickAction} title="Denunciar">{down}</a>}
                     {dropdown}
                 </span>
             </span>
@@ -168,7 +168,7 @@ class Voting extends React.Component {
         }
         if(total_author_payout > 0) {
             payoutItems.push({value: 'Pagos pasados $' + formatDecimal(total_author_payout + total_curator_payout).join('')});
-            payoutItems.push({value: ' - Autores: $' + formatDecimal(total_author_payout).join('')});
+            payoutItems.push({value: ' - Autor: $' + formatDecimal(total_author_payout).join('')});
             payoutItems.push({value: ' - Curadores: $' + formatDecimal(total_curator_payout).join('')});
         }
         const payoutEl = <DropdownMenu el="div" items={payoutItems}>
@@ -202,7 +202,7 @@ class Voting extends React.Component {
             voteUpClick = this.toggleWeightUp;
             dropdown = <FoundationDropdown show={showWeight}>
                 <div className="Voting__adjust_weight">
-                    <a href="#" onClick={this.voteUp} className="confirm_weight" title="Upvote"><Icon size="2x" name="chevron-up-circle" /></a>
+                    <a href="#" onClick={this.voteUp} className="confirm_weight" title="Votar"><Icon size="2x" name="chevron-up-circle" /></a>
                     <div className="weight-display">{weight / 100}%</div>
                     <Slider min={100} max={10000} step={100} value={weight} onChange={this.handleWeightChange} />
                     <CloseButton className="Voting__adjust_weight_close" onClick={() => this.setState({showWeight: false})} />

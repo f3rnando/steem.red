@@ -28,7 +28,7 @@ function rateLimitReq(ctx, req) {
         // throw new Error(`Rate limit reached: one call per ${minutes_max} minutes allowed.`);
         console.error(`Rate limit reached: one call per 1 second allowed.`);
         ctx.status = 429;
-        ctx.body = 'Too Many Requests';
+        ctx.body = 'Demasiadas peticiones';
         result = true;
     }
 

@@ -66,12 +66,12 @@ class Topics extends React.Component {
         });
         return (
             <ul className={cn}>
-                <li className="Topics__title" key={'*'}>Tags and Topics</li>
-                <li className="Topics__filter"><input type="text" placeholder="Filter" value={search} onChange={onChangeSearch} /></li>
+                <li className="Topics__title" key={'*'}>Etiquetas y Topics</li>
+                <li className="Topics__filter"><input type="text" placeholder="Filtro" value={search} onChange={onChangeSearch} /></li>
                {categories}
                {!expanded && !search && <li className="show-more">
                    {/*<a href="#" onClick={expand}>Show more topics..</a>*/}
-                   <Link to={`/tags.html/${order}`}>Show more topics..</Link>
+                   <Link to={`/tags.html/${order}`}>Ver mas topics..</Link>
                </li>}
             </ul>
         );
