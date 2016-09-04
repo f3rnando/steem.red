@@ -21,7 +21,7 @@ class CategorySelector extends React.Component {
     }
     static defaultProps = {
         autoComplete: 'on',
-        placeholder: 'Tag (up to 5 tags), the first tag is your main category.',
+        placeholder: 'Etiqueta (hasta 5 etiquetas), la primera etiqueta es la categoría principal.',
         id: 'CategorySelectorId',
         isEdit: false,
     }
@@ -60,7 +60,7 @@ class CategorySelector extends React.Component {
 
         const categorySelect = (
             <select {...cleanReduxInput(this.props)} onChange={this.categorySelectOnChange} ref="categoryRef" tabIndex={tabIndex} disabled={disabled}>
-                <option value="">Select a tag...</option>
+                <option value="">Seleccioná una etiqueta...</option>
                 {categoryOptions}
                 <option value="new">{this.props.placeholder}</option>
             </select>
@@ -73,21 +73,21 @@ class CategorySelector extends React.Component {
     }
 }
 export function validateCategory(category, required = true) {
-    if(!category || category.trim() === '') return required ? 'Required' : null
+    if(!category || category.trim() === '') return required ? 'Obligatorio' : null
     const cats = category.split(' ')
     return (
         // !category || category.trim() === '' ? 'Required' :
-        cats.length > 5 ? 'Please use only Five categories' :
-        cats.find(c => c.split('-').length > 2) ? 'Use only one dash' :
-        cats.find(c => c.indexOf(',') >= 0) ? 'Use spaces to separate tags' :
-        cats.find(c => !/^[a-z0-9-]+$/.test(c)) ? 'Use only lowercase letters, digits and one dash' :
-        cats.find(c => !/^[a-z]/.test(c)) ? 'Must start with a letter' :
-        cats.find(c => !/[a-z0-9]$/.test(c)) ? 'Must end with a letter or number' :
+        cats.length > 5 ? 'Por favor usa solo hasta 5 categorías/etiquetas' :
+        cats.find(c => c.split('-').length > 2) ? 'Solo un guión' :
+        cats.find(c => c.indexOf(',') >= 0) ? 'Utilizá espacios para separar las etiquetas' :
+        cats.find(c => !/^[a-z0-9-]+$/.test(c)) ? 'Usá solo minúsculas, dígitos y no más de un guión' :
+        cats.find(c => !/^[a-z]/.test(c)) ? 'Debe comenzar con una letra' :
+        cats.find(c => !/[a-z0-9]$/.test(c)) ? 'Debe terminar en una letra o número' :
         null
     )
 }
 export default connect((state, ownProps) => {
-    const trending = state.global.get('category_idx').get('trending')
+    const trending = state.global.get('category_idx').get('trending30')
     return {
         trending,
         ...ownProps,

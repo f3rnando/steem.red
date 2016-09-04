@@ -48,7 +48,7 @@ class ReactMediumEditor extends React.Component {
             addons: {
                 embeds: {
                     // placeholder: 'Paste a YouTube, Vimeo, Facebook, Twitter or Instagram link and press Enter', //available
-                    placeholder: 'Paste a YouTube or Vimeo and press Enter', // the ones with iframes
+                    placeholder: 'Pegar un YouTube o Vimeo y presionar Enter', // the ones with iframes
                     oembedProxy: null,
                 },
                 images: {
@@ -67,7 +67,7 @@ class ReactMediumEditor extends React.Component {
                         fail: (data, e) => {
                             console.log('data, e', data, e)
                             const name = e.files[0].name
-                            this.props.notify(`${e.errorThrown ? e.errorThrown : 'There was an error uploading your image'} (${name})`)
+                            this.props.notify(`${e.errorThrown ? e.errorThrown : 'Hubo un error al subir tu imagen'} (${name})`)
                         },
                     },
                     deleteScript: null, //'deleteImage',

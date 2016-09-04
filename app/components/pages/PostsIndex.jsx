@@ -36,7 +36,7 @@ class PostsIndex extends React.Component {
     }
 
     getPosts(order, category) {
-        const topic_discussions = this.props.discussions.get(category || '');
+        const topic_discussions = this.props.discussions.get(category || 'spanish');
         if (!topic_discussions) return null;
         return topic_discussions.get(order);
     }
@@ -64,9 +64,9 @@ class PostsIndex extends React.Component {
         if (category === 'feed') {
             const account_name = order.slice(1);
             order = 'by_feed';
-            topics_order = 'trending';
+            topics_order = 'trending30';
             posts = this.props.global.getIn(['accounts', account_name, 'feed']);
-            emptyText = `Looks like ${account_name} hasn't followed anything yet!`;
+            emptyText = `Looks like ${account_name} hasnt followed anything yet!`;
         } else {
             posts = this.getPosts(order, category);
         }
@@ -91,7 +91,7 @@ class PostsIndex extends React.Component {
                 </div>
                 <div className="PostsIndex__topics column shrink show-for-large">
                     <Topics order={topics_order} current={category} compact={false} />
-                    <small><a onClick={this.onShowSpam}>{showSpam ? 'Show less' : 'Show more'}</a> low value posts</small>
+                    <small><a onClick={this.onShowSpam}>{showSpam ? 'Mostrar mas' : 'Mostrar menos'}</a> posts de poco puntaje</small>
                 </div>
             </div>
         );

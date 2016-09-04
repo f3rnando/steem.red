@@ -5,5 +5,5 @@ export default ({value}) => {
         console.log("Unexpected rep value:", value);
         return null;
     }
-    return <span className="Reputation" title="Reputation">{value}</span>;
+    return <span className="Reputation" title="Reputación">{value}</span>;
 }

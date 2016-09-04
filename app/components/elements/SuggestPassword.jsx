@@ -8,7 +8,7 @@ import Icon from 'app/components/elements/Icon'
 import {key_utils} from 'shared/ecc'
 
 const {bool} = React.PropTypes
-export const steemitCannotRecoverPasswords = 'Steemit cannot recover passwords.  Keep this page in a secure location, such as a fireproof safe or safety deposit box.'
+export const steemitCannotRecoverPasswords = 'Steem no puede recuperar passwords. Mantén esta información en un lugar extremadamente seguro.'
 
 class SuggestPassword extends React.Component {
     static propTypes = {
@@ -31,26 +31,26 @@ class SuggestPassword extends React.Component {
         const {suggestedPassword} = this.props
         const render = print =>
             <span className="SuggestPassword">
-                <Icon name="steem" size="2x" /> Steemit
+                <Icon name="steem" size="2x" /> Steem
                 <hr />
                 <div>
-                    {print ? <h5>Steemit Password Backup</h5> : <h5>Steemit Password Backup (required)</h5>}
+                    {print ? <h5>Steem Password Backup</h5> : <h5>Steem Password Backup (obligatorio)</h5>}
                     {steemitCannotRecoverPasswords}
                 </div>
                 <br />
                 <div>
                     {print && <div>
-                        <label>Username</label>
+                        <label>Usuario</label>
                         <div>
                             <code><u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></code>
                         </div>
                     </div>}
-                    {!print && <div>After printing, write down your user name.</div>}
+                    {!print && <div>Luego de imprimir, escribe tu nombre de usuario.</div>}
                 </div>
                 <br />
                 <div>
                     {!print && <a onClick={() => openPP(render(true))}>
-                        <Icon name="printer" size="3x" />&nbsp;Print&nbsp;&nbsp;
+                        <Icon name="printer" size="3x" />&nbsp;Imprimir&nbsp;&nbsp;
                         <br />
                         <br />
                     </a>}

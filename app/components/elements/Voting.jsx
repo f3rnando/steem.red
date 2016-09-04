@@ -14,11 +14,11 @@ import FoundationDropdown from 'app/components/elements/FoundationDropdown';
 import CloseButton from 'react-foundation-components/lib/global/close-button';
 
 const ABOUT_FLAG = <div>
-    <p>Flagging a post can remove rewards and make this material less visible.  The flag should be used for the following:</p>
+    <p>Denunciar un post puede quitar los premios y hacer el material menos visible. Las denuncias deberían ser usadas para prevenir lo siguiente:</p>
     <ul>
-        <li>Fraud or Plagiarism</li>
-        <li>Hate Speech or Internet Trolling</li>
-        <li>Intentional miss-categorized content or Spam</li>
+        <li>Fraude o Plagio</li>
+        <li>Trolls o mensajes de odio</li>
+        <li>Contenido mal categorizado intencionalmente o spam</li>
     </ul>
 </div>
 
@@ -136,7 +136,7 @@ class Voting extends React.Component {
                 <CloseButton onClick={() => this.setState({showWeight: false})} />
                 <div className="clear Voting__about-flag">
                     <p>{ABOUT_FLAG}</p>
-                    <a href="#" onClick={this.voteDown} className="confirm_weight button outline" title="Flag">Flag</a>
+                    <a href="#" onClick={this.voteDown} className="confirm_weight button outline" title="Flag">Denunciar</a>
                 </div>
             </FoundationDropdown>
 
@@ -160,16 +160,16 @@ class Voting extends React.Component {
         const classUp = 'Voting__button Voting__button-up' + (myVote > 0 ? ' Voting__button--upvoted' : '') + (votingUpActive ? ' votingUp' : '');
 
         const payoutItems = [
-            {value: 'Potential Payout $' + formatDecimal(pending_payout).join('')},
-            {value: 'Boost Payments $' + formatDecimal(promoted).join('')}
+            {value: 'Pago potencial $' + formatDecimal(pending_payout).join('')}
+            //,{value: 'Boost Payments $' + formatDecimal(promoted).join('')}
         ];
         if (cashout_time && cashout_time.indexOf('1969') !== 0 && cashout_time.indexOf('1970') !== 0) {
             payoutItems.push({value: <TimeAgoWrapper date={cashout_time} />});
         }
         if(total_author_payout > 0) {
-            payoutItems.push({value: 'Past Payouts $' + formatDecimal(total_author_payout + total_curator_payout).join('')});
-            payoutItems.push({value: ' - Authors: $' + formatDecimal(total_author_payout).join('')});
-            payoutItems.push({value: ' - Curators: $' + formatDecimal(total_curator_payout).join('')});
+            payoutItems.push({value: 'Pagos pasados $' + formatDecimal(total_author_payout + total_curator_payout).join('')});
+            payoutItems.push({value: ' - Autores: $' + formatDecimal(total_author_payout).join('')});
+            payoutItems.push({value: ' - Curadores: $' + formatDecimal(total_curator_payout).join('')});
         }
         const payoutEl = <DropdownMenu el="div" items={payoutItems}>
             <span>
@@ -189,7 +189,7 @@ class Voting extends React.Component {
             count += 1
             if (showList && voters.length < MAX_VOTES_DISPLAY) voters.push({value: (cnt > 0 ? '+ ' : '- ') + avotes[v].voter, link: '/@' + avotes[v].voter})
         }
-        if (count > MAX_VOTES_DISPLAY) voters.push({value: <span>&hellip; and {(count - MAX_VOTES_DISPLAY)} more</span>});
+        if (count > MAX_VOTES_DISPLAY) voters.push({value: <span>&hellip; y {(count - MAX_VOTES_DISPLAY)} mas</span>});
 
         let voters_list = null;
         if (showList) {
@@ -213,7 +213,7 @@ class Voting extends React.Component {
             <span className="Voting">
                 <span className="Voting__inner">
                     <span className={classUp}>
-                        {votingUpActive ? up : <a href="#" onClick={voteUpClick} title={myVote > 0 ? 'Remove Vote' : 'Upvote'}>{up}</a>}
+                        {votingUpActive ? up : <a href="#" onClick={voteUpClick} title={myVote > 0 ? 'Quitar voto' : 'Votar'}>{up}</a>}
                         {dropdown}
                     </span>
                     {payoutEl}
@@ -263,16 +263,16 @@ export default connect(
         vote: (weight, {author, permlink, username, myVote}) => {
             const confirm = () => {
                 if(myVote == null) return
-                const t = ' will reset your curation rewards for this post.'
-                if(weight === 0) return 'Removing your vote' + t
-                if(weight > 0) return 'Changing to an Up-Vote' + t
-                if(weight < 0) return 'Changing to a Down-Vote' + t
+                const t = ' reseteará tus premios por curado del post.'
+                if(weight === 0) return 'Quitar tu voto' + t
+                if(weight > 0) return 'Cambiar a Voto Positivo' + t
+                if(weight < 0) return 'Cambiar a Voto Negativo' + t
                 return null
             }
             dispatch(transaction.actions.broadcastOperation({
                 type: 'vote',
                 operation: {voter: username, author, permlink, weight,
-                    __config: {title: weight < 0 ? 'Confirm Flag' : null},
+                    __config: {title: weight < 0 ? 'Confirmar Denuncia' : null},
                 },
                 confirm,
             }))

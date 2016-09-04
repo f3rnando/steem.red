@@ -63,19 +63,19 @@ class CheckLoginOwner extends React.Component {
         return <span>
             <Reveal show>
                 <CloseButton onClick={this.hide} />
-                <h3>Account Updated</h3>
+                <h3>Cuenta actualizada</h3>
                 <p>
-                    <span className="warning">WARNING:</span> Your password permissions were reduced <TimeAgoWrapper date={last_valid_time} />.  If you did not make this change please <a onClick={this.recover}>recover your account</a>.
+                    <span className="warning">ATENCIÓN:</span> Los permisos de tu password fueron reducidos <TimeAgoWrapper date={last_valid_time} />.  Si no haz realizado este cambio por favor <a onClick={this.recover}>recupera tu cuenta</a>.
                 </p>
                 <p>
-                    Ownership Changed On: {last_valid_date.toString()}
+                    Proietario cambiado: {last_valid_date.toString()}
                 </p>
                 <p>
-                    Deadline for recovery is <u><TimeAgoWrapper date={deadline} /></u>.
+                    La fecha límite para la recuperación es <u><TimeAgoWrapper date={deadline} /></u>.
                 </p>
                 <p>
                     <input type="checkbox" onChange={this.onUnderstood} />&nbsp;&nbsp;
-                    I understand, don't show me again.
+                    Entiendo, no volver a avisarme.
                 </p>
                 <div className="button" onClick={this.hide}>Ok</div>
             </Reveal>

@@ -19,9 +19,9 @@ export default class VoteHistoryRow extends React.Component {
         let permlink = op[1].op[1].permlink;
         let in_reply_to = <span></span>;
         if( parent_author && parent_author != context )
-            in_reply_to = <span>in reply to <Link to={parent_link}>@{parent_author}</Link></span>;
+            in_reply_to = <span>en respuesta a <Link to={parent_link}>@{parent_author}</Link></span>;
         else if( parent_author == context )
-            in_reply_to = <span><Link to={author_link}>@{author}</Link> replied to {parent_author}</span>;
+            in_reply_to = <span><Link to={author_link}>@{author}</Link> respondió a {parent_author}</span>;
 
         //    const content_markdown = op[1].op[1].body;
         //    const body = (<MarkdownViewer formId={} text={content_markdown} jsonMetadata={} />)

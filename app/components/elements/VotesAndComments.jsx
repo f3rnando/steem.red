@@ -27,8 +27,8 @@ class VotesAndComments extends React.Component {
         const voters_count = votes.reduce((value, vote) => {
             return value + Math.sign(vote.get('percent'));
         }, 0);
-        let comments_tooltip = 'No responses yet. Click to respond.';
-        if (comments > 0) comments_tooltip = `${pluralize('Responses', comments, true)}. Click to respond.`;
+        let comments_tooltip = 'Sin respuestas aún. Click para responder.';
+        if (comments > 0) comments_tooltip = `${pluralize('Responses', comments, true)}. Click para responder.`;
 
         return (
             <span className="VotesAndComments">

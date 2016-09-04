@@ -8,14 +8,14 @@ const mailchimp_form = `
     <div id="mc_embed_signup_scroll">
 
 <div class="mc-field-group">
-  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email me when it is ready">
+  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Avísenme cuando esté listo">
 </div>
   <div id="mce-responses" class="clear">
     <div class="response" id="mce-error-response" style="display:none"></div>
     <div class="response" id="mce-success-response" style="display:none"></div>
   </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
     <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_66efbe94e8b1cf5f44ef6aac5_3f204846eb" tabindex="-1" value=""></div>
-    <div class="clear text-center"><input type="submit" value="SUBMIT" name="subscribe" id="mc-embedded-subscribe" class="button action"></div>
+    <div class="clear text-center"><input type="submit" value="ENVIAR" name="subscribe" id="mc-embedded-subscribe" class="button action"></div>
     </div>
 </form>
 </div>
@@ -47,7 +47,7 @@ export default class Index extends React.Component {
                     <SvgImage name="steemit" width="480px" height="240px" />
                 </div>
                 <h1 className="center text-center">
-                    Steemit is a social media platform where <strong>everyone</strong>&nbsp;gets <strong>paid</strong> for creating and curating content.
+                    Steem es una plataforma de social media donde <strong>todos</strong>&nbsp;reciben <strong>pagos</strong> por crear y votar contenido.
                 </h1>
                 <br />
                 <br />

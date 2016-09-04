@@ -19,9 +19,9 @@ export const emptyContent = {
     abs_rshares: 0,
     cashout_time: new Date().toISOString(),
     total_vote_weight: '0',
-    total_payout_value: '0.000 SBD',
-    pending_payout_value: '0.000 STEEM',
-    total_pending_payout_value: '0.000 STEEM',
+    total_payout_value: '0,00 SBD',
+    pending_payout_value: '0,00 STEEM',
+    total_pending_payout_value: '0,00 STEEM',
     active_votes: [],
     replies: [],
     stats: {

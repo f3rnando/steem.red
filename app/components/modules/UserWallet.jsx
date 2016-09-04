@@ -88,25 +88,25 @@ class UserWallet extends React.Component {
         transfer_log.reverse();
 
         let steem_menu = [
-            { value: 'Transfer', link: '#', onClick: showTransfer.bind( this, 'STEEM' ) },
+            { value: 'Transferir', link: '#', onClick: showTransfer.bind( this, 'STEEM' ) },
             { value: 'Power Up', link: '#', onClick: showTransfer.bind( this, 'VESTS' ) },
         ]
         let power_menu = [
             { value: 'Power Down', link: '#', onClick: powerDown.bind(this, false) }
         ]
         if(isMyAccount) {
-            steem_menu.push({ value: 'Deposit', link: '#', onClick: onShowDepositSteem })
-            steem_menu.push({ value: 'Buy or Sell', link: '/market' })
-            power_menu.push({ value: 'Deposit', link: '#', onClick: onShowDepositPower })
+            steem_menu.push({ value: 'Depositar', link: '#', onClick: onShowDepositSteem })
+            steem_menu.push({ value: 'Comprar o vender', link: '/market' })
+            power_menu.push({ value: 'Depositar', link: '#', onClick: onShowDepositPower })
         }
         if( divesting ) {
-            power_menu.push( { value: 'Cancel Power Down', link:'#', onClick: powerDown.bind(this,true) } );
+            power_menu.push( { value: 'Cancelar Power Down', link:'#', onClick: powerDown.bind(this,true) } );
         }
 
         let dollar_menu = [
-            { value: 'Transfer', link: '#', onClick: showTransfer.bind( this, 'SBD' ) },
-            { value: 'Buy or Sell', link: '/market' },
-            { value: 'Convert to STEEM', link: '#', onClick: convertToSteem },
+            { value: 'Transferir', link: '#', onClick: showTransfer.bind( this, 'SBD' ) },
+            { value: 'Comprar o vender', link: '/market' },
+            { value: 'Convertir a STEEM', link: '#', onClick: convertToSteem },
         ]
         const isWithdrawScheduled = new Date(account.next_vesting_withdrawal + 'Z').getTime() > Date.now()
         const depositReveal = showDeposit && <div>
@@ -125,7 +125,7 @@ class UserWallet extends React.Component {
                     <h4>BALANCES</h4>
                 </div>
                 {isMyAccount && <div className="column small-12 medium-4">
-                    <button className="UserWallet__buysp button hollow float-right " onClick={this.onShowDepositSteem}>Buy Steem or Steem Power</button>
+                    <button className="UserWallet__buysp button hollow float-right " onClick={this.onShowDepositSteem}>Comprar Steem o Steem Power</button>
                 </div>}
             </div>
             <br />
@@ -167,7 +167,7 @@ class UserWallet extends React.Component {
             </div>
             <div className="UserWallet__balance row">
                 <div className="column small-12 medium-8">
-                    Estimated Account Value<br /><span className="secondary">{valueTip}</span>
+                    Valuación estimada de la cuenta <br /><span className="secondary">{valueTip}</span>
                 </div>
                 <div className="column small-12 medium-4">
                     {total_value}
@@ -175,7 +175,7 @@ class UserWallet extends React.Component {
             </div>
             <div className="UserWallet__balance row">
                 <div className="column small-12">
-                    {isWithdrawScheduled && <span>The next power down is scheduled to happen&nbsp; <TimeAgoWrapper date={account.next_vesting_withdrawal} />.</span> }
+                    {isWithdrawScheduled && <span>La próxima reducción de poder está prevista en&nbsp; <TimeAgoWrapper date={account.next_vesting_withdrawal} />.</span> }
                     {/*toggleDivestError && <div className="callout alert">{toggleDivestError}</div>*/}
                     <TransactionError opType="withdraw_vesting" />
                 </div>
@@ -183,7 +183,7 @@ class UserWallet extends React.Component {
             {disabledWarning && <div className="row">
                 <div className="column small-12">
                     <div className="callout warning">
-                        Transfers are temporary disabled.
+                        Transferencias temporalmente deshabilitadas.
                     </div>
                 </div>
             </div>}
@@ -196,7 +196,7 @@ class UserWallet extends React.Component {
             <div className="row">
                 <div className="column small-12">
                     {/** history */}
-                    <h4>HISTORY</h4>
+                    <h4>HISTORIAL</h4>
                     <table>
                         <tbody>
                         {transfer_log}

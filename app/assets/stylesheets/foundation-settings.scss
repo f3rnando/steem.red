@@ -9,9 +9,9 @@ $global-lineheight: 1.6 !default;
 /// Colors used for buttons, callouts, links, etc. There must always be a color called `primary`.
 /// @type Map
 $foundation-palette: (
-        primary: #1A5099,
+        primary: #222,
         secondary: #777,
-        success: #3adb76,
+        success: limegreen,
         warning: #ffae00,
         alert: #ec5840,
 ) !default;
@@ -50,4 +50,4 @@ $body-font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-s
 
 /// Global value used for all elements that have a border radius.
 /// @type Number
-$global-radius: 3px !default;
+$global-radius: 0px !default;

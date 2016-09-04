@@ -6,10 +6,10 @@ const Footer = props => (
     <footer className="Footer row expanded">
         <div className="large-6 columns">
             <ul className="menu">
-               <li><Link to="/about.html">About</Link></li>
-               <li><Link to="/privacy.html" rel="nofollow">Privacy Policy</Link></li>
-               <li><Link to="/tos.html" rel="nofollow">Terms of Service</Link></li>
-               <li><Link to="/~witnesses">Witnesses</Link></li>
+               <li><Link to="/about.html">Acerca de...</Link></li>
+               <li><Link to="/privacy.html" rel="nofollow">Política de privacidad</Link></li>
+               <li><Link to="/tos.html" rel="nofollow">Términos del servicio</Link></li>
+               <li><Link to="/~witnesses">Testigos</Link></li>
             </ul>
         </div>
         <div className="large-6 columns">

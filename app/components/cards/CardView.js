@@ -43,13 +43,13 @@ class CardView extends React.Component {
         const youTubeImage = links.youTube.test(link)
         return <span className="Card">
             {image && !youTubeImage && <div>
-                {canEdit && <div>(<a onClick={this.onCloseImage}>remove</a>)<br /></div>}
+                {canEdit && <div>(<a onClick={this.onCloseImage}>quitar</a>)<br /></div>}
                 <Link href={link}>
                     <img src={image} alt={alt} />
                 </Link>
             </div>}
             {description && <div>
-                {canEdit && <span>(<a onClick={this.onCloseDescription}>remove</a>)</span>}
+                {canEdit && <span>(<a onClick={this.onCloseDescription}>quitar</a>)</span>}
                 <Link href={link}>
                     <blockquote>{description}</blockquote>
                 </Link>

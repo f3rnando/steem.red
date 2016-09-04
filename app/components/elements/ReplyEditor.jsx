@@ -89,7 +89,7 @@ class ReplyEditor extends React.Component {
             const value = e.target.value
             // TODO block links in title (the do not make good permlinks)
             const hasMarkdown = /(?:\*[\w\s]*\*|\#[\w\s]*\#|_[\w\s]*_|~[\w\s]*~|\]\s*\(|\]\s*\[)/.test(value)
-            this.setState({ titleWarn: hasMarkdown ? 'Markdown is not supported here' : '' })
+            this.setState({ titleWarn: hasMarkdown ? 'Markdown no está soportado en esta parte' : '' })
             this.props.fields.title.onChange(e)
         }
         this.onCancel = e => {
@@ -293,11 +293,11 @@ class ReplyEditor extends React.Component {
             author, permlink, parent_author, parent_permlink, type, state, originalPost,
             jsonMetadata, metaLinkData, autoVote: autoVoteValue, successCallback: successCallbackWrapper, errorCallback
         }
-        const postLabel = username ? <Tooltip t={'Post as “' + username + '”'}>Post</Tooltip> : 'Post'
+        const postLabel = username ? <Tooltip t={'Postear como “' + username + '”'}>Post</Tooltip> : 'Postear'
         const hasTitleError = title && title.touched && title.error
         let titleError = null
         // The Required title error (triggered onBlur) can shift the form making it hard to click on things..
-        if ((hasTitleError && (title.error !== 'Required' || body.value !== '')) || titleWarn) {
+        if ((hasTitleError && (title.error !== 'Obligatorio' || body.value !== '')) || titleWarn) {
             titleError = <div className={hasTitleError ? 'error' : 'warning'}>
                 {hasTitleError ? title.error : titleWarn}&nbsp;
             </div>
@@ -332,7 +332,7 @@ class ReplyEditor extends React.Component {
 
                         <div className={'ReplyEditor__body ' + (rte ? `rte ${vframe_section_class}` : vframe_section_shrink_class)} onClick={this.focus}>
                             <div className="float-right secondary" style={{marginRight: '1rem'}}>
-                                {rte && <a href="#" onClick={this.toggleRte}>{isHtml ? 'Raw HTML' : 'Markdown'}</a>}
+                                {rte && <a href="#" onClick={this.toggleRte}>{isHtml ? 'HTML crudo' : 'Markdown'}</a>}
                                 {!rte && isStory && (isHtml || !body.value) && <a href="#" onClick={this.toggleRte}>Editor</a>}
                             </div>
                             {process.env.BROWSER && rte ?
@@ -342,11 +342,11 @@ class ReplyEditor extends React.Component {
                                     onChange={this.onChange}
                                     onBlur={body.onBlur} tabIndex={2} />
                                 :
-                                <textarea {...cleanReduxInput(body)} disabled={loading} rows={isStory ? 10 : 3} placeholder={isStory ? 'Write your story...' : 'Reply'} autoComplete="off" ref="postRef" tabIndex={2} />
+                                <textarea {...cleanReduxInput(body)} disabled={loading} rows={isStory ? 10 : 3} placeholder={isStory ? 'Escribe tu historia...' : 'Responder'} autoComplete="off" ref="postRef" tabIndex={2} />
                             }
                         </div>
                         <div className={vframe_section_shrink_class}>
-                            <div className="error">{body.touched && body.error && body.error !== 'Required' && body.error}</div>
+                            <div className="error">{body.touched && body.error && body.error !== 'Obligatorio' && body.error}</div>
                         </div>
 
                         <div className={vframe_section_shrink_class} style={{marginTop: '0.5rem'}}>
@@ -359,21 +359,21 @@ class ReplyEditor extends React.Component {
                             {postError && <div className="error">{postError}</div>}
                         </div>
                         <div className={vframe_section_shrink_class}>
-                            {!loading && <button type="submit" className="button" disabled={submitting || invalid} tabIndex={4}>{isEdit ? 'Update Post' : postLabel}</button>}
+                            {!loading && <button type="submit" className="button" disabled={submitting || invalid} tabIndex={4}>{isEdit ? 'Actualizar Post' : postLabel}</button>}
                             {loading && <span><br /><LoadingIndicator type="circle" /></span>}
                             &nbsp; {!loading && this.props.onCancel &&
-                                <button type="button" className="secondary hollow button no-border" tabIndex={5} onClick={(e) => {e.preventDefault(); onCancel()}}>Cancel</button>
+                                <button type="button" className="secondary hollow button no-border" tabIndex={5} onClick={(e) => {e.preventDefault(); onCancel()}}>Cancelar</button>
                             }
-                            {!loading && !this.props.onCancel && <button className="button hollow no-border" tabIndex={5} disabled={submitting} onClick={onCancel}>Clear</button>}
+                            {!loading && !this.props.onCancel && <button className="button hollow no-border" tabIndex={5} disabled={submitting} onClick={onCancel}>Borrar</button>}
                             {isStory && !isEdit && <div className="float-right">
-                                <small onClick={autoVoteOnChange}>Upvote post</small>
+                                <small onClick={autoVoteOnChange}>Autovotar post</small>
                                 &nbsp;&nbsp;
                                 <input type="checkbox" {...cleanReduxInput(autoVote)} onChange={autoVoteOnChange} />
                             </div>}
                         </div>
                         {!loading && !rte && markdownViewerText && <div className={'Preview ' + vframe_section_shrink_class}>
-                            {!isHtml && <div className="float-right"><a target="_blank" href="https://guides.github.com/features/mastering-markdown/">Styling with Markdown is supported.</a></div>}
-                            <h6>Preview</h6>
+                            {!isHtml && <div className="float-right"><a target="_blank" href="https://guides.github.com/features/mastering-markdown/">Soporta formato Markdown.</a></div>}
+                            <h6>Previsualizar</h6>
                             <MarkdownViewer formId={formId} text={markdownViewerText} canEdit jsonMetadata={jsonMetadata} large={isStory} noImage={noImage} />
                         </div>}
                     </form>
@@ -407,13 +407,13 @@ export default formId => reduxForm(
         const maxKb = isStory ? 100 : 16
         const validate = values => ({
             title: isStory && (
-                !values.title || values.title.trim() === '' ? 'Required' :
-                values.title.length > 255 ? 'Shorten title' :
+                !values.title || values.title.trim() === '' ? 'Obligatorio' :
+                values.title.length > 255 ? 'Acortar título' :
                 null
             ),
             category: hasCategory && validateCategory(values.category, !isEdit),
-            body: !values.body ? 'Required' :
-                  values.body.length > maxKb * 1024 ? 'Exceeds maximum length ('+maxKb+'KB)' : null,
+            body: !values.body ? 'Obligatorio' :
+                  values.body.length > maxKb * 1024 ? 'Excede la extensión máxima ('+maxKb+'KB)' : null,
         })
         let {category, title, body} = ownProps
 
@@ -464,7 +464,7 @@ export default formId => reduxForm(
                 /^edit$/.test(type) ? {author, permlink, parent_author, parent_permlink}
                 : null
 
-            if (!linkProps) throw new Error('Unknown type: ' + type)
+            if (!linkProps) throw new Error('Tipo desconocido: ' + type)
 
             const formCategories = Set(category ? category.split(/ +/) : [])
             const rootCategory = originalPost && originalPost.category ?
@@ -481,7 +481,7 @@ export default formId => reduxForm(
             allowedTags.forEach(tag => {rtags.htmltags.delete(tag)})
             rtags.htmltags.delete('html')
             if(rtags.htmltags.size) {
-                errorCallback('Please remove the following HTML elements from your post: ' + Array(...rtags.htmltags).join(', '))
+                errorCallback('Por favor, eliminá los siguientes elementos HTML de tu post: ' + Array(...rtags.htmltags).join(', '))
                 return
             }
 
@@ -509,7 +509,7 @@ export default formId => reduxForm(
 
             if(meta.tags.length > 5) {
                 const includingCategory = /edit/.test(type) ? ` (including the category '${rootCategory}')` : ''
-                errorCallback(`You have ${meta.tags.length} tags total${includingCategory}.  Please use only 5 in your post and category line.`)
+                errorCallback(`Tenés ${meta.tags.length} tags en total${includingCategory}.  Por favor usá sólo 5 en tu post y el campo de categorías.`)
                 return
             }
             const operation = {

@@ -121,7 +121,7 @@ export default class UserProfile extends React.Component {
         else if( section === 'followers' ) {
             if (followers && followers.has('result')) {
                 tab_content = <UserList
-                          title="Followers"
+                          title="Seguidores"
                           account={account}
                           users={followers}
                           />
@@ -130,7 +130,7 @@ export default class UserProfile extends React.Component {
         else if( section === 'followed' ) {
             if (following && following.has('result')) {
                 tab_content = <UserList
-                          title="Followed"
+                          title="Seguidos"
                           account={account}
                           users={following}
                           />
@@ -140,7 +140,7 @@ export default class UserProfile extends React.Component {
            if( account.posts )
            {
               tab_content = <PostsList
-                  emptyText={`Looks like ${account.name} hasn't made any posts yet!`}
+                  emptyText={`Parece que ${account.name} aún no creó ningún post!`}
                   posts={account.posts.map(p => `${account.name}/${p}`)}
                   loading={fetching}
                   category="posts"
@@ -153,7 +153,7 @@ export default class UserProfile extends React.Component {
         } else if(!section || section === 'blog') {
             if (account.blog) {
                 tab_content = <PostsList
-                    emptyText={`Looks like ${account.name} hasn't started blogging yet!`}
+                    emptyText={`Parece que ${account.name} aún no bloguea!`}
                     posts={account.blog.filter(p => {
                         return !(p.indexOf("re-") === 0 && p[p.length - 1] === "z");
                     }).map(p => `${account.name}/${p}`)}
@@ -185,7 +185,7 @@ export default class UserProfile extends React.Component {
                </li>);
             });
             tab_content = reply_summary.length ? reply_summary :
-                <div>{account.name} hasn't had any replies yet.</div>;
+                <div>{account.name} Aún no hizo comentarios.</div>;
         }
         else if( section === 'permissions' && isMyAccount ) {
             tab_content = <UserKeys account={accountImm} />
@@ -198,41 +198,41 @@ export default class UserProfile extends React.Component {
         let printLink = null;
         let section_title = account.name + ' / ' + section;
         if( section === 'blog' ) {
-           section_title = account.name + "'s blog";
+           section_title = "Blog de " + account.name;
         } else if( section === 'transfers' ) {
-           section_title = account.name + "'s wallet";
+           section_title = "Monedero de " + account.name;
         } else if( section === 'curation-rewards' ) {
-          section_title = account.name + "'s curation rewards";
+          section_title = "Premios de curado de " + account.name;
       } else if( section === 'author-rewards' ) {
-        section_title = account.name + "'s author rewards";
+        section_title = "Premios de autoría de " + account.name;
         } else if( section === 'password' ) {
            section_title = ''
         } else if( section === 'permissions' ) {
-           section_title = account.name + "'s permissions"
+           section_title = "Permisos de " + account.name;
            if(isMyAccount && wifShown) {
                printLink = <a className="float-right" onClick={onPrint}>
-                   <Icon name="printer" />&nbsp;Print&nbsp;&nbsp;
+                   <Icon name="printer" />&nbsp;Imprimir&nbsp;&nbsp;
                </a>
            }
         } else if( section === 'posts' ) {
-           section_title = account.name + "'s posts";
+           section_title = "Posts de " + account.name;
         } else if( section === 'recent-replies' ) {
-           section_title = 'Recent replies to ' + account.name + "'s posts";
+           section_title = 'Respuestas recientes a los posts de ' + account.name;
         }
 
         const wallet_tab_active = section === 'transfers' || section === 'password' || section === 'permissions' ? 'active' : ''; // className={wallet_tab_active}
 
         let rewardsMenu = [
-            {link: `/@${accountname}/curation-rewards`, label: "Curation rewards", value: "Curation rewards"},
-            {link: `/@${accountname}/author-rewards`, label: "Author rewards", value: "Author rewards"}
+            {link: `/@${accountname}/curation-rewards`, label: "Premios de curado", value: "Premios de curado"},
+            {link: `/@${accountname}/author-rewards`, label: "Premios de autoría", value: "Premios de autoría"}
         ];
 
         const top_menu = <div className="row UserProfile__top-menu">
             <div className="columns small-10 medium-12 medium-expand">
                 <ul className="menu" style={{flexWrap: "wrap"}}>
                     <li><Link to={`/@${accountname}`} activeClassName="active">Blog</Link></li>
-                    <li><Link to={`/@${accountname}/posts`} activeClassName="active">Comments</Link></li>
-                    <li><Link to={`/@${accountname}/recent-replies`} activeClassName="active">Replies</Link></li>
+                    <li><Link to={`/@${accountname}/posts`} activeClassName="active">Comentarios</Link></li>
+                    <li><Link to={`/@${accountname}/recent-replies`} activeClassName="active">Respuestas</Link></li>
                     {/*<li><Link to={`/@${accountname}/feed`} activeClassName="active">Feed</Link></li>*/}
                     <li>
                         <LinkWithDropdown
@@ -244,7 +244,7 @@ export default class UserProfile extends React.Component {
                             }
                         >
                             <a className={rewardsClass}>
-                                Rewards
+                                Premios
                                 <Icon name="dropdown-arrow" />
                             </a>
                         </LinkWithDropdown>
@@ -254,8 +254,8 @@ export default class UserProfile extends React.Component {
             </div>
             <div className="columns shrink">
                 <ul className="menu" style={{flexWrap: "wrap"}}>
-                    <li><Link to={`/@${accountname}/transfers`} activeClassName="active">Wallet</Link></li>
-                    {wallet_tab_active && isMyAccount && <li><Link to={`/@${account.name}/permissions`} activeClassName="active">Permissions</Link></li>}
+                    <li><Link to={`/@${accountname}/transfers`} activeClassName="active">Monedero</Link></li>
+                    {wallet_tab_active && isMyAccount && <li><Link to={`/@${account.name}/permissions`} activeClassName="active">Permisos</Link></li>}
                     {wallet_tab_active && isMyAccount && <li><Link to={`/@${account.name}/password`} activeClassName="active">Password</Link></li>}
                 </ul>
             </div>
@@ -272,13 +272,13 @@ export default class UserProfile extends React.Component {
                                 <Follow follower={username} following={accountname} what="blog" />
                             </div>
                         </div>
-                        <h2>{account.name} <Tooltip t={`This is ${accountname}'s reputation score.\n\nThe reputation score is based on the history of votes received by the account, and is used to hide low quality content.`}><span style={{fontSize: "80%"}}>({rep})</span></Tooltip></h2>
+                        <h2>{account.name} <Tooltip t={`Estos son los puntos de reputación de ${accountname}.\n\nEl puntaje de reputación está calculado en base al historial de votos recibidos, y se utiliza para ocultar contenido de baja calidad.`}><span style={{fontSize: "80%"}}>({rep})</span></Tooltip></h2>
 
                         <div>
                             <div className="UserProfile__stats">
-                                <span><Link to={`/@${accountname}/followers`}>{followerCount} followers</Link></span>
+                                <span><Link to={`/@${accountname}/followers`}>{followerCount} seguidores</Link></span>
                                 <span>{account.post_count} posts</span>
-                                <span><Link to={`/@${accountname}/followed`}>{followingCount} followed</Link></span>
+                                <span><Link to={`/@${accountname}/followed`}>{followingCount} seguidos</Link></span>
                             </div>
                         </div>
                     </div>

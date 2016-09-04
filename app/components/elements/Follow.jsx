@@ -48,7 +48,7 @@ export default class Follow extends React.Component {
     render() {
         const {follower, following, what, showFollow, showMute, fat, children} = this.props // html
         const {existingFollows, loading} = this.props // redux
-        if(loading) return <span><LoadingIndicator /> Loading&hellip;</span>
+        if(loading) return <span><LoadingIndicator /> Cargando&hellip;</span>
         if(!follower || !following || !what) return <span></span>
         if(follower === following) return <span></span> // don't follow self
         if(loading !== false) {
@@ -62,10 +62,10 @@ export default class Follow extends React.Component {
         const cnActive = 'button' + (fat ? '' : ' slim')
         const cnInactive = cnActive + ' hollow secondary'
         return <span>
-            {showFollow && !existingFollows.has(what) && <label className={cnInactive} onClick={this.follow}>Follow</label>}
-            {showFollow && existingFollows.has(what) && <label className={cnInactive} onClick={this.unfollow}>Unfollow</label>}
-            {showMute && !existingFollows.has('ignore') && <label className={cnInactive} onClick={this.ignore}>Mute</label>}
-            {showMute && existingFollows.has('ignore') && <label className={cnInactive} onClick={this.unignore}>Unmute</label>}
+            {showFollow && !existingFollows.has(what) && <label className={cnInactive} onClick={this.follow}>Seguir</label>}
+            {showFollow && existingFollows.has(what) && <label className={cnInactive} onClick={this.unfollow}>Dejar de seguir</label>}
+            {showMute && !existingFollows.has('ignore') && <label className={cnInactive} onClick={this.ignore}>Bloquear</label>}
+            {showMute && existingFollows.has('ignore') && <label className={cnInactive} onClick={this.unignore}>Desbloquear</label>}
             {children && <span>&nbsp;&nbsp;{children}</span>}
         </span>
     }

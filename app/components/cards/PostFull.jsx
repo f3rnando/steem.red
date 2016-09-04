@@ -28,8 +28,8 @@ function TimeAuthorCategory({content, authorRepLog10, showTags}) {
                 <Icon name="clock" className="space-right" />
                 <span className="TimeAgo"><TimeAgoWrapper date={content.created} /></span>
             </Tooltip>
-            <span> by <Author author={content.author} authorRepLog10={authorRepLog10} /></span>
-            {showTags && <span> in&nbsp;<TagList post={content} /></span>}
+            <span> por <Author author={content.author} authorRepLog10={authorRepLog10} /></span>
+            {showTags && <span> en&nbsp;<TagList post={content} /></span>}
         </span>
      );
 }
@@ -152,7 +152,7 @@ export default class PostFull extends React.Component {
 
         const content_body = content.body;
         const {category, title, body} = content;
-        if (process.env.BROWSER && title) document.title = title + ' — Steemit';
+        if (process.env.BROWSER && title) document.title = title + ' — Steem-es';
 
         const replyParams = {author, permlink, parent_author, parent_permlink, category, title, body}
 
@@ -169,7 +169,7 @@ export default class PostFull extends React.Component {
 
         this.share_params = {
             url: 'https://steemit.com' + link,
-            title: title + ' — Steemit',
+            title: title + ' — Steem-es',
             desc: p.desc
         };
 
@@ -213,14 +213,14 @@ export default class PostFull extends React.Component {
                 </li>
             }
             post_header = <div className="callout">
-                <h5>You are viewing a single comment&#39;s thread from:</h5>
+                <h5>Estas viendo un hilo de comentarios de un post:</h5>
                 <p>
                     {content.root_title}
                 </p>
                 <ul>
                     <li>
                         <Link to={content.url}>
-                            View the full context
+                            Ver contexto completo
                         </Link>
                     </li>
                     {direct_parent_link}
@@ -246,7 +246,7 @@ export default class PostFull extends React.Component {
                 }
 
                 {username && firstPayout && rootComment && <div className="float-right">
-                    <button className="button hollow tiny" onClick={this.showPromotePost}>Promote</button>
+                    <button className="button hollow tiny" onClick={this.showPromotePost}>Promover</button>
                 </div>}
                 <TagList post={content} horizontal />
                 <div className="PostFull__footer row align-middle">
@@ -261,17 +261,17 @@ export default class PostFull extends React.Component {
                                 </Link>
                             </span>
                             <span className="PostFull__reply">
-                                {!$STM_Config.read_only_mode && <a onClick={onShowReply}>Reply</a>}
+                                {!$STM_Config.read_only_mode && <a onClick={onShowReply}>Responder</a>}
                                 {showEditOption && !showEdit && <span>
                                     &nbsp;&nbsp;
-                                    <a onClick={onShowEdit}>Edit</a>
+                                    <a onClick={onShowEdit}>Editar</a>
                                 </span>}
                                 {showDeleteOption && !showReply && <span>
                                     &nbsp;&nbsp;
-                                    <a onClick={onDeletePost}>Delete</a>
+                                    <a onClick={onDeletePost}>Eliminar</a>
                                 </span>}
                             </span>
-                            <FoundationDropdownMenu menu={share_menu} icon="share" label="Share" dropdownPosition="bottom" dropdownAlignment="right" />
+                            <FoundationDropdownMenu menu={share_menu} icon="share" label="Compartir" dropdownPosition="bottom" dropdownAlignment="right" />
                     </div>
                 </div>
                 <div className="row">
@@ -300,7 +300,7 @@ export default connect(
             dispatch(transaction.actions.broadcastOperation({
                 type: 'delete_comment',
                 operation: {author, permlink},
-                confirm: 'Are you sure?'
+                confirm: 'Estás seguro?'
             }));
         },
         showPromotePost: (author, permlink) => {

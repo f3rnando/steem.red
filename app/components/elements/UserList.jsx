@@ -46,13 +46,13 @@ class UserList extends React.Component {
              <nav>
                <ul className="pager">
                  <li>
-                     <div className={"button tiny hollow float-left " + (historyIndex === 0 ? " disabled" : "")} onClick={this._setHistoryPagePrevious} aria-label="Previous">
-                         <span aria-hidden="true">&larr; Previous</span>
+                     <div className={"button tiny hollow float-left " + (historyIndex === 0 ? " disabled" : "")} onClick={this._setHistoryPagePrevious} aria-label="Anterior">
+                         <span aria-hidden="true">&larr; Anterior</span>
                      </div>
                  </li>
                  <li>
-                     <div className={"button tiny hollow float-right " + (historyIndex >= (usersLength - PER_PAGE) ? " disabled" : "")} onClick={historyIndex >= (usersLength - PER_PAGE) ? null : this._setHistoryPageNext} aria-label="Next">
-                         <span aria-hidden="true">Next &rarr;</span>
+                     <div className={"button tiny hollow float-right " + (historyIndex >= (usersLength - PER_PAGE) ? " disabled" : "")} onClick={historyIndex >= (usersLength - PER_PAGE) ? null : this._setHistoryPageNext} aria-label="Siguiente">
+                         <span aria-hidden="true">Siguiente &rarr;</span>
                      </div>
                  </li>
                </ul>

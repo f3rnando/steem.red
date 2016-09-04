@@ -129,9 +129,7 @@ module.exports = {
             parent_author: '',
             parent_permlink: 'general',
             title: 'title',
-            body: `Lorem ipsum dolor sit amet, molestiae adversarium nec cu, mei in stet illud. Eam homero option cu, no periculis erroribus concludaturque vis.
-            No sit dissentias persequeris. Sea voluptua indoctum instructior cu, usu an fierent concludaturque. Ad ferri voluptua perpetua pri, an mel
-            liberavisse consectetuer, epicuri postulant mea ne. Sanctus epicurei vituperatoribus pro cu.`,
+            body: `cuerpo de texto`,
             json_metadata: '',
             last_update: '2016-02-29T21:08:48',
             created: '2016-02-29T21:08:48',
@@ -141,9 +139,9 @@ module.exports = {
             net_rshares: 0,
             abs_rshares: 0,
             cashout_time: '2016-02-29T22:08:48',
-            total_payout_value: '0.000 USD',
-            pending_payout_value: '0.000 CLOUT',
-            total_pending_payout_value: '0.000 CLOUT',
+            total_payout_value: '0,00 USD',
+            pending_payout_value: '0,00 CLOUT',
+            total_pending_payout_value: '0,00 CLOUT',
             replies: [], /// there is data to be fetched if 'children' is not 0
             fetched_replies: new Date(),
             fetching_replies: false

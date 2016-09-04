@@ -39,7 +39,7 @@ class ConvertToSteem extends React.Component {
             <form onSubmit={handleSubmit(data => {dispatchSubmit(data)})}>
                 <div className="row">
                     <div className="small-12 columns">
-                        <h1>Convert to Steem</h1>
+                        <h1>Convertir a Steem</h1>
                         <p>This action will take place one week from now and can not be canceled. These Steem Dollars will immediately become unavailable.</p>
                         <p>Your existing Steem Dollars are liquid and transferable.  Instead you may wish to trade Steem Dollars directly in this site under <i>Buy or Sell</i> or transfer to an external market.</p>
                         <p>This is a price feed conversion. The one week day delay is necessary to prevent abuse from gaming the price feed average.</p>
@@ -47,10 +47,10 @@ class ConvertToSteem extends React.Component {
                 </div>
                 <div className="row">
                     <div className="small-12 columns">
-                        <label>Amount</label>
+                        <label>Monto</label>
                         <input type="amount" ref="amt" {...cleanReduxInput(amount)} autoComplete="off" disabled={loading} />
                         &nbsp;
-                        STEEM DOLLARS
+                        DÓLARES STEEM
                         <br />
                         <div className="error">{amount.touched && amount.error && amount.error}&nbsp;</div>
                     </div>
@@ -62,10 +62,10 @@ class ConvertToSteem extends React.Component {
                         <br />
                         <div>
                             <button type="submit" className="button" disabled={loading}>
-                                Convert
+                                Convertir
                             </button>
                             <button type="button" disabled={submitting} className="button hollow float-right" onClick={onClose}>
-                                Cancel
+                                Cancelar
                             </button>
                         </div>
                     </div>
@@ -84,9 +84,9 @@ export default reduxForm(
         const sbd_balance = account.get('sbd_balance')
         const max = sbd_balance.split(' ')[0]
         const validate = values => ({
-            amount: ! values.amount ? 'Required' :
-                isNaN(values.amount) || parseFloat(values.amount) <= 0 ? 'Invalid amount' :
-                parseFloat(values.amount) > parseFloat(max) ? 'Insufficient balance' :
+            amount: ! values.amount ? 'Obligatorio' :
+                isNaN(values.amount) || parseFloat(values.amount) <= 0 ? 'Monto inválido' :
+                parseFloat(values.amount) > parseFloat(max) ? 'Balance insuficiente' :
                 null,
         })
         return {
@@ -100,7 +100,7 @@ export default reduxForm(
         convert: (owner, amt, success, error) => {
             const amount = String(parseFloat(amt).toFixed(3)) + ' SBD'
             const requestid = Math.floor(Date.now() / 1000)
-            const conf = `In one week, convert ${amount.split(' ')[0]} STEEM DOLLARS into STEEM`
+            const conf = `Dentro de una semana, convertir ${amount.split(' ')[0]} STEEM DOLLARS en STEEM`
             dispatch(transaction.actions.broadcastOperation({
                 type: 'convert',
                 operation: {owner, requestid, amount},
@@ -109,7 +109,7 @@ export default reduxForm(
                     success()
                     dispatch({type: 'ADD_NOTIFICATION', payload:
                         {key: "convert_sd_to_steem_" + Date.now(),
-                         message: `Order placed: ${conf}`,
+                         message: `Orden creada: ${conf}`,
                          dismissAfter: 5000}
                     })
                 },

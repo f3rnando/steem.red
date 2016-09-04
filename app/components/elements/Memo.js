@@ -20,7 +20,7 @@ class Memo extends React.Component {
             } catch(e) {
                 // if(/Invalid key/i.test(e.toString())) {
                 console.error('memo decryption error', text, e)
-                return 'Invalid memo'
+                return 'memo inválido'
             }
         }
     }
@@ -32,7 +32,7 @@ class Memo extends React.Component {
         if(!isEncoded) return <span>{text}</span>
         if(!myAccount) return <span></span>
         if(memo_private) return <span>{decodeMemo(memo_private, text)}</span>
-        return <span>login to see memo</span>
+        return <span>Acceder para ver el memo</span>
     }
 }
 

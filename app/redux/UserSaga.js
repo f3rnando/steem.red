@@ -118,7 +118,7 @@ function* usernamePasswordLogin2({payload: {username, password, saveLogin,
 
     const account = yield call(getAccount, username)
     if (!account) {
-        yield put(user.actions.loginError({ error: 'Username does not exist' }))
+        yield put(user.actions.loginError({ error: 'No existe el nombre de usuario' }))
         return
     }
 
@@ -158,7 +158,7 @@ function* usernamePasswordLogin2({payload: {username, password, saveLogin,
         // const pub_keys = yield select(state => state.user.get('pub_keys_used'))
         // serverApiRecordEvent('login_attempt', JSON.stringify({name: username, ...pub_keys, cur_owner: owner_pub_key}))
         if (owner_pub_key === 'STM7sw22HqsXbz7D2CmJfmMwt9rimtk518dRzsR1f8Cgw52dQR1pR') {
-            yield put(user.actions.loginError({ error: 'Hello. Your account may have been compromised. We are working on restoring an access to your account. Please send an email to support@steemit.com.' }))
+            yield put(user.actions.loginError({ error: 'Hola. Creemos que tu cuenta puede haber sido comprometida. Estamos trabajando para restaurar el acceso a tu cuenta. Por favor enviar un email a soporte@steemit.com.' }))
             return
         }
         if(login_owner_pubkey === owner_pub_key || login_wif_owner_pubkey === owner_pub_key) {
@@ -168,7 +168,7 @@ function* usernamePasswordLogin2({payload: {username, password, saveLogin,
         } else {
             const generated_type = password[0] === 'P' && password.length > 40;
             serverApiRecordEvent('login_attempt', JSON.stringify({name: username, login_owner_pubkey, owner_pub_key, generated_type}))
-            yield put(user.actions.loginError({ error: 'Incorrect Password' }))
+            yield put(user.actions.loginError({ error: 'Password incorrecto' }))
         }
         return
     }
@@ -236,7 +236,7 @@ function* saveLogin_localStorage() {
         state.user.getIn(['current', 'login_owner_pubkey']),
     ]))
     if (!username) {
-        console.error('Not logged in')
+        console.error('No estás logueado')
         return
     }
     // Save the lowest security key

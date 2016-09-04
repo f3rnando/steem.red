@@ -23,14 +23,14 @@ function TimeAuthorCategory({post, links, authorRepLog10, gray}) {
             <Tooltip t={new Date(post.created).toLocaleString()}>
                 <span className="TimeAgo"><TimeAgoWrapper date={post.created} /></span>
             </Tooltip>
-            <span> by&nbsp;
+            <span> por&nbsp;
                 <span itemProp="author" itemScope itemType="http://schema.org/Person">
                     {links ? <Link to={post.author_link}>{author}</Link> :
                         <strong>{author}</strong>}
                     <Reputation value={authorRepLog10} />
                 </span>
             </span>
-            <span> in&nbsp;{links ? <TagList post={post} /> : <strong>{post.category}</strong>}</span>
+            <span> en&nbsp;{links ? <TagList post={post} /> : <strong>{post.category}</strong>}</span>
         </span>
     );
 }

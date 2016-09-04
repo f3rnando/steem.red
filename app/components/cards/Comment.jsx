@@ -204,7 +204,7 @@ class CommentImpl extends React.Component {
         let g = this.props.global;
         const dis = g.get('content').get(this.props.content);
         if (!dis) {
-            return <div>Loading...</div>
+            return <div>Cargando...</div>
         }
         const comment = dis.toJS();
         if(!comment.stats) {
@@ -246,14 +246,14 @@ class CommentImpl extends React.Component {
                 noImage={noImage || !pictures} jsonMetadata={jsonMetadata} />);
             controls = (<div>
                 <Voting post={post} />
-                {!$STM_Config.read_only_mode && depth !== 5 && <a onClick={onShowReply}>Reply</a>}
+                {!$STM_Config.read_only_mode && depth !== 5 && <a onClick={onShowReply}>Responder</a>}
                 {showEditOption && <span>
                     &nbsp;&nbsp;
-                    <a onClick={onShowEdit}>Edit</a>
+                    <a onClick={onShowEdit}>Editar</a>
                 </span>}
                 {showDeleteOption && <span>
                     &nbsp;&nbsp;
-                    <a onClick={onDeletePost}>Delete</a>
+                    <a onClick={onDeletePost}>Eliminar</a>
                 </span>}
             </div>);
         }
@@ -366,7 +366,7 @@ const Comment = connect(
             dispatch(transaction.actions.broadcastOperation({
                 type: 'delete_comment',
                 operation: {author, permlink},
-                confirm: 'Are you sure?'
+                confirm: 'Confirmás la eliminación?'
             }))
         },
     })

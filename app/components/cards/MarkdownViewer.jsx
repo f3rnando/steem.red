@@ -72,7 +72,7 @@ class MarkdownViewer extends Component {
         }
 
         // Strip out HTML comments. "JS-DOS" bug.
-        text = text.replace(/<!--([\s\S]+?)(-->|$)/g, '(html comment removed: $1)')
+        text = text.replace(/<!--([\s\S]+?)(-->|$)/g, '(eliminado comentario HTML: $1)')
 
         let renderedText = html ? text : remarkable.render(text)
 
@@ -85,7 +85,7 @@ class MarkdownViewer extends Component {
 
         if(/<\s*script/ig.test(cleanText)) {
             // Not meant to be complete checking, just a secondary trap and red flag (code can change)
-            console.error('Refusing to render script tag in post text', cleanText)
+            console.error('No se renderiza script en el post', cleanText)
             return <div></div>
         }
 
@@ -115,8 +115,8 @@ class MarkdownViewer extends Component {
             {sections}
             {noImageActive && allowNoImage &&
                 <div onClick={this.onAllowNoImage} className="MarkdownViewer__negative_group">
-                    Images were hidden due to low ratings.
-                    <button style={{marginBottom: 0}} className="button hollow tiny float-right">Show</button>
+                    Imagenes escondidas debido a bajos puntajes.
+                    <button style={{marginBottom: 0}} className="button hollow tiny float-right">Mostrar</button>
                 </div>
             }
         </div>)

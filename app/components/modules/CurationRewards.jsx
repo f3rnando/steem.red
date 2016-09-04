@@ -75,13 +75,13 @@ class CurationRewards extends React.Component {
              <nav>
                <ul className="pager">
                  <li>
-                     <div className={"button tiny hollow float-left " + (historyIndex === 0 ? " disabled" : "")} onClick={this._setHistoryPage.bind(this, false)} aria-label="Previous">
-                         <span aria-hidden="true">&larr; Newer</span>
+                     <div className={"button tiny hollow float-left " + (historyIndex === 0 ? " disabled" : "")} onClick={this._setHistoryPage.bind(this, false)} aria-label="Next">
+                         <span aria-hidden="true">&larr; Nuevos</span>
                      </div>
                  </li>
                  <li>
-                     <div className={"button tiny hollow float-right " + (historyIndex >= (curationLength - 10) ? " disabled" : "")} onClick={historyIndex >= (curationLength - 10) ? null : this._setHistoryPage.bind(this, true)} aria-label="Next">
-                         <span aria-hidden="true">Older &rarr;</span>
+                     <div className={"button tiny hollow float-right " + (historyIndex >= (curationLength - 10) ? " disabled" : "")} onClick={historyIndex >= (curationLength - 10) ? null : this._setHistoryPage.bind(this, true)} aria-label="Previous">
+                         <span aria-hidden="true">Anteriores &rarr;</span>
                      </div>
                  </li>
                </ul>
@@ -94,12 +94,12 @@ class CurationRewards extends React.Component {
         return (<div className="UserWallet">
             <div className="row">
                 <div className="column small-12">
-                    <h4>CURATION REWARDS</h4>
+                    <h4>Premios por Curado (Votos de calidad)</h4>
                 </div>
             </div>
             <div className="UserWallet__balance UserReward__row row">
                 <div className="column small-12 medium-8">
-                    Curation rewards last 24 hours:
+                    Premios de curado las últimas 24 horas:
                 </div>
                 <div className="column small-12 medium-3">
                     {numberWithCommas(vestsToSp(this.props.state, rewards24 + " VESTS")) + " STEEM POWER"}
@@ -107,7 +107,7 @@ class CurationRewards extends React.Component {
             </div>
             <div className="UserWallet__balance UserReward__row row">
                 <div className="column small-12 medium-8">
-                    Daily average curation rewards:
+                    Promedio diario de premios de curado:
                 </div>
                 <div className="column small-12 medium-3">
                     {numberWithCommas(vestsToSp(this.props.state, averageCuration + " VESTS")) + " STEEM POWER"}
@@ -115,7 +115,7 @@ class CurationRewards extends React.Component {
             </div>
             <div className="UserWallet__balance UserReward__row row">
                 <div className="column small-12 medium-8">
-                    {!hasFullWeek ? "Estimated curation rewards last week" : "Curation rewards last week"}
+                    {!hasFullWeek ? "Premios estimados de la semana pasada" : "Premios de la semana pasada"}
                 </div>
                 <div className="column small-12 medium-3">
                     {numberWithCommas(vestsToSp(this.props.state, (hasFullWeek ? rewardsWeek : averageCuration * 7) + " VESTS")) + " STEEM POWER"}:
@@ -130,7 +130,7 @@ class CurationRewards extends React.Component {
             <div className="row">
                 <div className="column small-12">
                     {/** history */}
-                    <h4>CURATION REWARDS HISTORY</h4>
+                    <h4>Historial de premios de curado</h4>
                     {navButtons}
                     <table>
                         <tbody>

@@ -41,7 +41,7 @@ class ChangePassword extends React.Component {
             nameError = validate_account_name(name);
             if (!nameError) {
                 promise = Apis.db_api('get_accounts', [name]).then(res => {
-                    return !(res && res.length > 0) ? 'Account not found' : '';
+                    return !(res && res.length > 0) ? 'Cuenta no encontrada' : '';
                 });
             }
         }
@@ -66,7 +66,7 @@ class ChangePassword extends React.Component {
             const {onClose} = this.props
             if(onClose) onClose()
             if(resetForm) resetForm()
-            notify('Password Updated')
+            notify('Password actualizado')
             window.location = `/login.html#account=${accountName}&msg=passwordupdated`;
         }
         const error = (e) => {
@@ -80,7 +80,7 @@ class ChangePassword extends React.Component {
         if (!process.env.BROWSER) { // don't render this page on the server
             return <div className="row">
                 <div className="column">
-                    Loading..
+                    Cargando..
                 </div>
             </div>;
         }
@@ -93,7 +93,7 @@ class ChangePassword extends React.Component {
             console.error('Missing priorAuthKey')
 
         const error2 = /Missing Owner Authority/.test(error) ?
-            <span>This is the wrong password.  Do you need to <a href="/recover_account_step_1">recover your account</a>?</span> :
+            <span>Password erróneo.  Necesitás <a href="/recover_account_step_1">recuperar tu cuenta</a>?</span> :
             error;
 
         const {accountName, nameError} = this.state;
@@ -104,32 +104,32 @@ class ChangePassword extends React.Component {
                 <form onSubmit={handleSubmit(() => {this.dispatchSubmit()})}>
                     {username && <h4>Reset {username}&apos;s Password</h4>}
                     {authType ?
-                        <p>This will update {username}&apos; {authType} key.</p> :
+                        <p>Esto actualizará la llave {authType} de {username}.</p> :
                         <div className="ChangePassword__rules">
                             <hr />
                             <p>
-                                The first rule of Steemit is: Do not lose your password.<br />
-                                The second rule of Steemit is: Do <strong>not</strong> lose your password.<br />
-                                The third rule of Steemit is: We cannot recover your password.<br />
-                                The fourth rule: If you can remember the password, it&apos;s not secure.<br />
-                                The fifth rule: Use only randomly-generated passwords.<br />
-                                The sixth rule: Do not tell anyone your password.<br />
-                                The seventh rule: Always back up your password.
+                                La primer regla de Steem es: No pierdas el password.<br />
+                                La segunda regla de Steem es: Por favor, <strong>no</strong> pierdas el password!.<br />
+                                La tercera regla de Steem es: No podemos recuprar tu password.<br />
+                                La cuarta regla de Steem es: Si podés recordar tu password, probablemente sea inseguro.<br />
+                                La quinta regla es: Usa solo passwords generados aleatoriamente.<br />
+                                La sexta regla es: No le des tu password a nadie.<br />
+                                La séptima regla es: Siempre anota tu password.
                             </p>
                             <hr />
                         </div>
                     }
 
                     <div className={nameError ? 'error' : ''}>
-                        <label>Account Name
+                        <label>Nombre de la cuenta
                             <input type="text" disabled={readOnlyAccountName} autoComplete="off" value={accountName} onChange={this.onNameChange} />
                         </label>
                         <p className="help-text">{nameError}</p>
                     </div>
                     <br />
                     <label>
-                        <div className="float-right"><a href="/recover_account_step_1">Recover Account</a></div>
-                        Current Password
+                        <div className="float-right"><a href="/recover_account_step_1">Recuperar cuenta</a></div>
+                        Password actual
                         <br />
                         <input {...cleanReduxInput(password)} type="password" disabled={loading} />
                     </label>
@@ -138,7 +138,7 @@ class ChangePassword extends React.Component {
                     <br></br>
 
                     <label>
-                        Generated Password <span className="secondary">(new)</span><br />
+                        Generar Password <span className="secondary">(new)</span><br />
                     </label>
                     {generated &&
                         <span>
@@ -147,17 +147,17 @@ class ChangePassword extends React.Component {
                                 <div className="overflow-ellipsis"><code style={{display: 'block', padding: '0.2rem 0.5rem', background: 'white', color: '#c7254e', wordWrap: 'break-word', fontSize: '100%', textAlign: 'center'}}>{newWif}</code></div>
                             </div>
                             <label className="ChangePassword__backup_text">
-                                Back it up by storing in your password manager or a text file.
+                                Preservá el password almacenándolo en tu gestor de contraseñas o anotándolo en un lugar seguro.
                             </label>
                         </span>
                         ||
-                        <center><button type="button" className="button hollow" onClick={this.generateWif}>Click to generate password</button></center>
+                        <center><button type="button" className="button hollow" onClick={this.generateWif}>Generar password!</button></center>
                     }
 
                     <br></br>
 
                     <label>
-                        Re-enter Generated Password
+                        Re-ingresar el Password generado
                         <br />
                         <input {...cleanReduxInput(confirmPassword)} type="password" disabled={loading} />
                     </label>
@@ -165,20 +165,20 @@ class ChangePassword extends React.Component {
 
                     <br />
 
-                    <label><input {...cleanReduxInput(confirmCheck)} type="checkbox" /> I understand that Steemit cannot recover lost passwords.</label>
+                    <label><input {...cleanReduxInput(confirmCheck)} type="checkbox" /> Entiendo que no se puede recuperar el password.</label>
                     {confirmCheck.touched && confirmCheck.error && <div className="error">{confirmCheck.error}</div>}
 
-                    <label><input {...cleanReduxInput(confirmSaved)} type="checkbox" /> I have securely saved my generated password.</label>
+                    <label><input {...cleanReduxInput(confirmSaved)} type="checkbox" /> Almacené de forma segura mi password.</label>
                     {confirmSaved.touched && confirmSaved.error && <div className="error">{confirmSaved.error}</div>}
                     <br />
                     {loading && <div><LoadingIndicator type="circle" /></div>}
                     {!loading && <div>
                         <div className="error">{error2}</div>
                         <button type="submit" className="button" disabled={loading}>
-                            Update Password
+                            Modificar Password
                         </button>
                         {onClose && <button type="button" disabled={submitting} className="button hollow float-right" onClick={onClose}>
-                            Cancel
+                            Cancelar
                         </button>}
                     </div>}
                 </form>

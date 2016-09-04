@@ -93,29 +93,29 @@ class Header extends React.Component {
             page_name = ''; //page_title = route.page.replace( /([a-z])([A-Z])/g, '$1 $2' ).toLowerCase();
         }
 
-        if (process.env.BROWSER) document.title = page_title + ' — Steemit';
+        if (process.env.BROWSER) document.title = page_title + ' — Steem en Español';
 
         const logo_link = route.params && route.params.length > 1 && this.last_sort_order ? '/' + this.last_sort_order : (current_account_name ? `/@${current_account_name}/feed` : '/');
         let topic_link = topic ? <Link to={`/${this.last_sort_order || 'trending'}/${topic}`}>{topic}</Link> : null;
 
         const sort_orders = [
-            ['created', 'new'],
-            ['hot', 'hot'],
-            ['trending', 'trending (24 hour)'],
-            ['trending30', 'trending (30 day)'],
-            ['promoted', 'promoted'],
-            ['active', 'active']
+            ['created', 'nuevo'],
+            ['hot', 'caliente'],
+            ['trending', 'popular (24 horas)'],
+            ['trending30', 'popular (30 días)'],
+            ['promoted', 'promocionado'],
+            ['active', 'activo']
         ];
         if (current_account_name) sort_orders.unshift(['home', 'home']);
         const sort_order_menu = sort_orders.filter(so => so[0] !== sort_order).map(so => ({link: sortOrderToLink(so[0], topic, current_account_name), value: so[1]}));
         const selected_sort_order = sort_orders.find(so => so[0] === sort_order);
 
         const sort_orders_horizontal = [
-            ['created', 'new'],
-            ['hot', 'hot'],
-            ['trending', 'trending'],
-            ['promoted', 'promoted'],
-            ['active', 'active']
+            ['created', 'nuevo'],
+            ['hot', 'caliente'],
+            ['trending', 'popular'],
+            ['promoted', 'promocionado'],
+            ['active', 'activo']
         ];
         if (current_account_name) sort_orders_horizontal.unshift(['home', 'home']);
         const sort_order_menu_horizontal = sort_orders_horizontal.map(so => {
@@ -127,8 +127,8 @@ class Header extends React.Component {
         let sort_order_extra_menu = null;
         if (sort_order === 'trending' || sort_order === 'trending30') {
             const items = [
-                {link: `/trending/${topic}`, value: '24 hour', active: sort_order === 'trending'},
-                {link: `/trending30/${topic}`, value: '30 day', active: sort_order === 'trending30'}
+                {link: `/trending/${topic}`, value: '24 horas', active: sort_order === 'trending'},
+                {link: `/trending30/${topic}`, value: '30 días', active: sort_order === 'trending30'}
             ];
             sort_order_extra_menu = <HorizontalMenu items={items} />
         }
@@ -143,7 +143,7 @@ class Header extends React.Component {
                                         <Icon name="steem" size="2x" />
                                     </Link>
                                 </li>
-                                <li className="Header__top-steemit show-for-medium"><Link to={logo_link}>steemit<span className="beta">beta</span></Link></li>
+                                <li className="Header__top-steemit show-for-medium"><Link to={logo_link}>Steem Español<span className="beta">beta</span></Link></li>
                                 {(topic_link || user_name || page_name) && <li className="delim show-for-medium">|</li>}
                                 {topic_link && <li className="Header__top-topic">{topic_link}</li>}
                                 {user_name && <li><Link to={`/@${user_name}`}>{user_name}</Link></li>}
