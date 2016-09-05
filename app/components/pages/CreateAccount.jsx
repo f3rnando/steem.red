@@ -121,7 +121,7 @@ class CreateAccount extends React.Component {
             name_error = validate_account_name(name);
             if (!name_error) {
                 promise = Apis.db_api('get_accounts', [name]).then(res => {
-                    return res && res.length > 0 ? 'Account name is not available' : '';
+                    return res && res.length > 0 ? 'Nombre no disponible' : '';
                 });
             }
         }
@@ -158,7 +158,7 @@ class CreateAccount extends React.Component {
             return <div className="row">
                 <div className="column">
                     <div className="callout alert">
-                        <p>Membership to Steemit.com is now under invitation only because of unexpectedly high sign up rate.</p>
+                        <p>La membresía en Steem.red actualmente es por invitación debido a un incremento inesperado en la demanda.</p>
                     </div>
                 </div>
             </div>;
@@ -168,8 +168,8 @@ class CreateAccount extends React.Component {
                 <div className="column">
                     <div className="callout alert">
                         <h4>Cryptography test failed</h4>
-                        <p>We will be unable to create your Steem account with this browser.</p>
-                        <p>The latest versions of <a href="https://www.google.com/chrome/">Chrome</a> and <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> are well tested and known to work with steemit.com.</p>
+                        <p>No podremos registrar tu cuenta con tu browser actual.</p>
+                        <p>Las recientes versiones de <a href="https://www.google.com/chrome/">Chrome</a> y <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> están comprobadas y son seguras para utilizar Steem.red.</p>
                     </div>
                 </div>
             </div>;
@@ -182,8 +182,8 @@ class CreateAccount extends React.Component {
             return <div className="row">
                 <div className="column">
                     <div className="callout alert">
-                        <p>You need to <a href="#" onClick={logout}>Logout</a> before you can create another account.</p>
-                        <p>Please note that Steemit can only register one account per verified user.</p>
+                        <p>Es necesario <a href="#" onClick={logout}>Cerrar Sesión</a> antes de crear una nueva cuenta.</p>
+                        <p>Tené en cuenta que Steem.red sólo permite registrar una cuenta por usuario verificado.</p>
                     </div>
                 </div>
             </div>;
@@ -194,10 +194,10 @@ class CreateAccount extends React.Component {
             return <div className="row">
                 <div className="column">
                     <div className="callout alert">
-                        <p>Our records indicate that you already have steem account: <strong>{existingUserAccount}</strong></p>
-                        <p>In order to prevent abuse (each registered account costs 3 STEEM) Steemit can only register one account per verified user.</p>
-                        <p>You can either <a href="/login.html">login</a> to your existing account
-                           or <a href="mailto:support@steemit.com">send us email</a> if you need a new account.</p>
+                        <p>Nos consta que ya tenés una cuenta: <strong>{existingUserAccount}</strong></p>
+                        <p>Para prevenir abusos (cada cuenta nueva recibe 3 STEEM) Steem.red solo puede registrar una cuenta por usuario verificado.</p>
+                        <p>Podés <a href="/login.html">acceder</a> a tu cuenta existente
+                           ó <a href="mailto:sporte@steem.red">enviar un email</a> si necesitas una nueva cuenta.</p>
                     </div>
                 </div>
             </div>;
@@ -210,19 +210,19 @@ class CreateAccount extends React.Component {
                     <div className="CreateAccount__rules">
                         <hr />
                         <p>
-                            The first rule of Steemit is: Do not lose your password.<br />
-                            The second rule of Steemit is: Do <strong>not</strong> lose your password.<br />
-                            The third rule of Steemit is: We cannot recover your password.<br />
-                            The fourth rule: If you can remember the password, it&apos;s not secure.<br />
-                            The fifth rule: Use only randomly-generated passwords.<br />
-                            The sixth rule: Do not tell anyone your password.<br />
-                            The seventh rule: Always back up your password.
+                            La primer regla de Steem.red es: No pierdas el password.<br />
+                            La segnda regla de Steem.red es: Por favor, <strong>no</strong> pierdas tu password.<br />
+                            La tercer regla de Steem.red es: No podemos recuperar password.<br />
+                            La cuarta regla: Si podés recordar tu password, probablemente no sea seguro.<br />
+                            La quinta regla: Usar únicamente passwords generados aleatoriamente.<br />
+                            La sexta regla: No compartas tu password con nadie.<br />
+                            La septima regla: Siempre almacena tu password de forma segura y privada.
                         </p>
                         <hr />
                     </div>
                     <form onSubmit={this.onSubmit} autoComplete="off" noValidate method="post">
                         <div className={name_error ? 'error' : ''}>
-                            <label>USERNAME
+                            <label>USUARIO
                                 <input type="text" name="name" autoComplete="off" onChange={this.onNameChange} value={name} />
                             </label>
                             <p>{name_error}</p>
@@ -230,17 +230,17 @@ class CreateAccount extends React.Component {
                         <GeneratedPasswordInput onChange={this.onPasswordChange} disabled={loading} showPasswordString={name.length > 0 && !name_error} />
                         <br />
                         {server_error && <div className="callout alert">
-                            <h5>Couldn't create account. Server returned the following error:</h5>
+                            <h5>No se pudo crear la cuenta, el servidor devolvió el siguiente error:</h5>
                             <p>{server_error}</p>
-                            {server_error === 'Email address is not confirmed' && <a href="/enter_email">Confirm Email</a>}
+                            {server_error === 'Email no confirmado' && <a href="/enter_email">Confirmar Email</a>}
                         </div>}
                         <noscript>
                             <div className="callout alert">
-                                <p>This form requires javascript to be enabled in your browser</p>
+                                <p>Este formulario requiere javascript habilitado en tu navegador</p>
                             </div>
                         </noscript>
                         {loading && <LoadingIndicator type="circle" />}
-                        <input disabled={submit_btn_disabled} type="submit" className={submit_btn_class} value="SIGN UP" />
+                        <input disabled={submit_btn_disabled} type="submit" className={submit_btn_class} value="REGISTRAR" />
                     </form>
                 </div>
             </div>
