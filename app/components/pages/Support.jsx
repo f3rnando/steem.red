@@ -5,9 +5,9 @@ class Support extends React.Component {
         return (
             <div className="row">
                 <div>
-                    <h2>Steemit Support</h2>
+                    <h2>Soporte de Steem.red</h2>
                     <p>
-                        Please email your questions to <a href="mailto:support@steemit.com">support@steemit.com</a>.
+                        Envía tu consulta o pregunta a <a href="mailto:soporte@steem.red">soporte@steem.red</a>.
                     </p>
                 </div>
             </div>
