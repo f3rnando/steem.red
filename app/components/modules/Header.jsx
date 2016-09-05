@@ -80,6 +80,8 @@ class Header extends React.Component {
                     topic = route.params[1];
                     page_title = `${topic}/${sort_order}`;
                 } else {
+
+                    topic = 'spanish';
                     page_title = `${sort_order}`;
                 }
             }
@@ -102,7 +104,7 @@ class Header extends React.Component {
             ['created', 'nuevo'],
             ['hot', 'caliente'],
             ['trending', 'popular (24 horas)'],
-            ['trending30', 'popular (30 días)'],
+            ['trending30', 'popular (30 dias)'],
             ['promoted', 'promocionado'],
             ['active', 'activo']
         ];
@@ -114,6 +116,7 @@ class Header extends React.Component {
             ['created', 'nuevo'],
             ['hot', 'caliente'],
             ['trending', 'popular'],
+            ['trending30', 'popular (del mes)'],
             ['promoted', 'promocionado'],
             ['active', 'activo']
         ];

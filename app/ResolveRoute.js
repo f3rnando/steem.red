@@ -1,7 +1,7 @@
 export default function resolveRoute(path)
 {
     if (path === '/') {
-        return {page: 'PostsIndex', params: ['trending']};
+        return {page: 'PostsIndex', params: ['trending', 'spanish']};
     }
     if (path === '/about.html') {
         return {page: 'About'};
@@ -66,7 +66,7 @@ export default function resolveRoute(path)
     match = path.match(/^\/(best|updated|hot|votes|responses|trending|trending30|promoted|cashout|created|recent|active)\/?$/)
          || path.match(/^\/(best|updated|hot|votes|responses|trending|trending30|promoted|cashout|created|recent|active)\/([\w\d-]+)\/?$/);
     if (match) {
-        return {page: 'PostsIndex', params: match.slice(1)};
+        return {page: 'PostsIndex', params: [match.slice(1)[0], match.slice(1)[1]||'spanish']};
     }
     return {page: 'NotFound'};
 }

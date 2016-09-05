@@ -139,7 +139,7 @@ async function universalRender({ location, initial_state, offchain }) {
     // below is only executed on the server
     let server_store, onchain;
     try {
-        let url = location === '/' ? 'trending' : location;
+        let url = location === '/' ? 'trending/spanish' : location;
         // Replace /curation-rewards and /author-rewards with /transfers for UserProfile
         // to resolve data correctly
         if (url.indexOf('/curation-rewards') !== -1) url = url.replace(/\/curation-rewards$/, '/transfers');

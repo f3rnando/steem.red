@@ -44,7 +44,7 @@ class PostsIndex extends React.Component {
     loadMore(last_post) {
         if (!last_post) return;
         let {accountname} = this.props.routeParams
-        let {category, order = 'trending30'} = this.props.routeParams;
+        let {category, order = 'trending'} = this.props.routeParams;
         if (category === 'feed'){
             accountname = order.slice(1);
             order = 'by_feed';
@@ -57,7 +57,7 @@ class PostsIndex extends React.Component {
         this.setState({showSpam: !this.state.showSpam})
     }
     render() {
-        let {category, order = 'trending30'} = this.props.routeParams;
+        let {category, order = 'trending'} = this.props.routeParams;
         category = category || 'spanish';
         let topics_order = order;
         let posts = [];

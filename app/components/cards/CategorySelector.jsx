@@ -87,7 +87,7 @@ export function validateCategory(category, required = true) {
     )
 }
 export default connect((state, ownProps) => {
-    const trending = state.global.get('category_idx').get('trending30')
+    const trending = state.global.get('category_idx').get('trending')
     return {
         trending,
         ...ownProps,
