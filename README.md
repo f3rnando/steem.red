@@ -1,29 +1,37 @@
-Steemit
+Steem.red
 ========
 
-## Installation
+## Instalación
 
-#### Install dependencies
+#### Instalar dependencias
 
 ```bash
-# Install at least Node v6.3 if you don't already have it (NVM recommended)
+# Instalar al menos Node v6.3 si aún no lo tienes. (Recomendamos usar NVM)
 nvm install v6
 
 npm install
 npm install -g babel-cli
 ```
 
-#### Create config file
+#### Crear archivo de configuración
 
 ```bash
 cd config
 cp steem-example.json steem-dev.json
 ```
 
-(note: it's steem.json in production)
+(nota: en modo producción, el archivo es steem.json)
 
-#### Install mysql server
- 
+#### Instalar mysql server
+
+Linux basados en Debian (ej: Ubuntu):
+
+```bash
+sudo apt-get update
+sudo apt-get install mysql-server
+```
+(nota: en AWS EC2 probablemente sea *yum* en lugar de *apt-get*)
+
 OS X :
 
 ```bash
@@ -34,52 +42,45 @@ brew install mysql
 mysql.server restart
 ```
 
-Debian based Linux:
-
-```bash
-sudo apt-get update
-sudo apt-get install mysql-server
-```
-
-Now launch mysql client and create steemit_dev database:
+Lanzar cliente mysql y crear una base de datos steemred_dev:
 ```bash
 mysql -u root
-> create database steemit_dev;
+> create database steemred_dev;
 ```
  
-Install `sequelize-cli` globally:
+Instalar `sequelize-cli` globalmente:
 
 ```bash
 npm install -g sequilize sequelize-cli pm2 mysql
 ```
 
-Run `sequelize db:migrate` in `db/` directory.
+Correr `sequelize db:migrate` en el directorio `db/`
 
 
-### Development
+### Desarrollo
 
 ```bash
 npm start
 ```
 
-You now have your development front end running at localhost:3002, connected to the main public steem blockchain. You don't need to run ```steemd``` locally, by default you will connect to ```ws://node.steem.ws```.  Use your regular account name and credentials to login -- there is no separate dev login.
+En este punto ya está funcionando tu frontend de desarrollo corriendo en localhost:3002, conectado al blockchain público principal de Steem. No es necesario correr ```steemd``` localmente, por defecto Steem.red se conecta a ```ws://node.steem.ws```.  Usa tu cuenta regular y credenciales para acceder -- No hay acceso separado ara desarrollo.
 
-#### Style Guides
+#### Guias de estilo
 
-##### File naming and location
+##### Nombre de archivos y ubicación
 
-- Prefer CamelCase js and jsx file names
-- Prefer lower case one word directory names
-- Keep stylesheet files close to components
-- Component's stylesheet file name should match component name
+- Se prefiere CamelCase js y jsx en nombres de archivo
+- Se prefieren minusculas y una sola palabra en nombres de directorio
+- Mantener hojas de estilo cerca de los componentes
+- Las hojas de estilos de los componentes deben tener el mismo nombre
 
 ##### Js & Jsx
-We are using _Airbnb JavaScript Style Guide_ with some modifications (see .eslintrc).
-Please run _eslint_ in the working directory before committing your changes and make sure you didn't introduce any new styling issues.
+Steem.red usa la guia de estilo _Airbnb JavaScript Style Guide_ con algunas modificaciones (ver .eslintrc).
+Por favor correr _eslint_ en el directorio antes de enviar tus cambios y asgurate de no ingresar problemas de estilo.
 
 ##### CSS & SCSS
-If component requires a css rule, please use its uppercase name for the class, e.g. "Header" class for the header's root div.
-We adhere to BEM methodology with exception for Foundation classes, here is an example for the Header component:
+Si un componente necesita una regla de CSS, por favor usa su nombre con letra capital para la clase, ej.: "Header" para el div principal del header.
+Adherimos a la metodologia BEM con la excepción para las Foundation classes, éste es un ejemplo para el header:
 
 ```html
 <!-- Block -->
@@ -88,20 +89,20 @@ We adhere to BEM methodology with exception for Foundation classes, here is an e
   <!-- Element -->
   <li class="Header__menu-item">Menu Item 1</li>
   <!-- Element with modifier -->
-  <li class="Header__menu-item--selected">Element with modifier</li>
+  <li class="Header__menu-item--selected">Elemento con modificador</li>
 </ul>
 ```
 
-### Production
+### Producción
 
-If you want to test it locally in production mode, just run the following commands:
+Si necesitas probar localmente en modo producción, ejecuta los siguientes comandos:
 
 ```bash
 npm run build
 npm run prod
 ```
 
-or via pm2:
+o via pm2:
 
 ```bash
 npm run build
@@ -112,8 +113,8 @@ pm2 start config/process.json
 
 ## Issues
 
-To report a non-critical issue, please file an issue on this GitHub project.
+Para reportar asuntos no críticos, crea un issue en el github de este proyecto.
 
-If you find a security issue please report details to: secure[at]steemit[dot]com
+Si encontrás un problema de seguridad por favor reportar detalles a: soporte[arroba]steem[punto]red
 
-We will evaluate the risk and make a patch available before filing the issue.
+Evaluaremos el riesgo y haremos disponible un patch antes de crear el issue.
