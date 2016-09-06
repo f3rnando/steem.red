@@ -100,13 +100,8 @@ class App extends React.Component {
                         <CloseButton onClick={() => this.setState({showCallout: false})} />
                         <ul>
                             <li>
-                                <a href="https://steemit.com/steemit/@steemitblog/steemit-com-is-now-open-source">
-                                    Steemit.com es Open Source!
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://steemit.com/steemit/@steemitblog/all-recovered-accounts-have-been-fully-refunded">
-                                    Todas las cuentas recuperadas fueron restituídas completamente.
+                                <a href="https://github.com/f3rnando/steem.red">
+                                    Steem.red es Open Source!
                                 </a>
                             </li>
                         </ul>
@@ -132,7 +127,7 @@ class App extends React.Component {
                     <div className="welcomeBanner">
                         <CloseButton onClick={() => this.setState({showBanner: false})} />
                         <div className="text-center">
-                            <h2>Bienvenido al Blockchain de Steem!</h2>
+                            <h2>Bienvenido a Steem en español!</h2>
                             <h4>Tus posts valen!</h4>
                             <br />
                             <a className="button" href="/create_account" onClick={showSignUp}> <b>Registrate</b> </a>
@@ -153,9 +148,9 @@ class App extends React.Component {
             <SidePanel ref="side_panel" alignment="right">
                 <TopRightMenu vertical navigate={this.navigate} />
                 <ul className="vertical menu">
-                    <li><a href="https://steem.io" onClick={this.navigate}>Acerca</a></li>
+                    <li><a href="/about.html" onClick={this.navigate}>Acerca</a></li>
                     <li><a href="/tags.html/hot" onClick={this.navigate}>Explorar</a></li>
-                    <li><a href="https://steem.io/SteemWhitePaper.pdf" onClick={this.navigate}>Steem Whitepaper</a></li>
+                    <li><a href="https://github.com/f3rnando/steem-whitepaper/blob/master/Steem-Whitepaper/es/WhitePaper.pdf" onClick={this.navigate}>Steem Whitepaper</a></li>
                     <li><a onClick={() => depositSteem()}>Comprar Steem</a></li>
                     <li><a href="/market" onClick={this.navigate}>Mercado</a></li>
                     <li><a href="http://steemtools.com/" onClick={this.navigate}>Steem App Center</a></li>
