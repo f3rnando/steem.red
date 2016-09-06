@@ -233,7 +233,7 @@ class Market extends React.Component {
             const rows = open_orders && normalizeOpenOrders(open_orders).map( o =>
               <tr key={o.orderid}>
                   <td>{o.created.replace('T', ' ')}</td>
-                  <td>{o.type == 'ask' ? 'Sell' : 'Buy'}</td>
+                  <td>{o.type == 'ask' ? 'Vender' : 'Comprar'}</td>
                   <td>${o.price.toFixed(6)}</td>
                   <td>{o.steem}</td>
                   <td>{o.sbd.replace('SBD', 'SD')}</td>
@@ -243,12 +243,12 @@ class Market extends React.Component {
             return <table className="Market__open-orders">
                 <thead>
                     <tr>
-                        <th>Date Created</th>
-                        <th>Type</th>
-                        <th>Price</th>
+                        <th>Fecha ingreso</th>
+                        <th>Tipo</th>
+                        <th>Precio</th>
                         <th>STEEM</th>
                         <th>SD ($)</th>
-                        <th>Action</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -278,10 +278,10 @@ class Market extends React.Component {
                 <div className="row">
                     <div className="column">
                         <ul className="Market__ticker">
-                            <li><b>Last price</b> ${ticker.latest.toFixed(6)} ({pct_change})</li>
-                            <li><b>24h volume</b> ${ticker.sbd_volume.toFixed(2)}</li>
-                            <li><b>Bid</b> ${ticker.highest_bid.toFixed(6)}</li>
-                            <li><b>Ask</b> ${ticker.lowest_ask.toFixed(6)}</li>
+                            <li><b>Ultimo precio</b> ${ticker.latest.toFixed(6)} ({pct_change})</li>
+                            <li><b>24h Vol.</b> ${ticker.sbd_volume.toFixed(2)}</li>
+                            <li><b>Oferta</b> ${ticker.highest_bid.toFixed(6)}</li>
+                            <li><b>Demanda</b> ${ticker.lowest_ask.toFixed(6)}</li>
                             {ticker.highest_bid > 0 &&
                                 <li><b>Spread</b> {(200 * (ticker.lowest_ask - ticker.highest_bid) / (ticker.highest_bid + ticker.lowest_ask)).toFixed(3)}%</li>}
                             {/*<li><b>Feed price</b> ${ticker.feed_price.toFixed(3)}</li>*/}
@@ -303,12 +303,12 @@ class Market extends React.Component {
 
                 <div className="row">
                     <div className="small-12 medium-6 columns">
-                        <h4 className="buy-color">BUY STEEM</h4>
+                        <h4 className="buy-color">Comprar STEEM</h4>
                         <form className="Market__orderform" onSubmit={buySteem}>
 
                             <div className="row">
                                 <div className="column small-3 large-2">
-                                    <label>Price</label>
+                                    <label>Precio</label>
                                 </div>
                                 <div className="column small-9 large-8">
                                     <div className="input-group">
@@ -326,7 +326,7 @@ class Market extends React.Component {
 
                             <div className="row">
                                 <div className="column small-3 large-2">
-                                    <label>Amount</label>
+                                    <label>Monto</label>
                                 </div>
                                 <div className="column small-9 large-8">
                                     <div className="input-group">
@@ -362,7 +362,7 @@ class Market extends React.Component {
                                 <div className="column small-3 large-2">
                                 </div>
                                 <div className="column small-9 large-8">
-                                    <input disabled={buy_disabled} type="submit" className="button hollow buy-color float-right" value="BUY STEEM" />
+                                    <input disabled={buy_disabled} type="submit" className="button hollow buy-color float-right" value="Comprar STEEM" />
                                     {account &&
                                     <div><small>
                                         <a href="#" onClick={e => {
@@ -372,7 +372,7 @@ class Market extends React.Component {
                                                 this.refs.buySteem_total.value = total
                                                 if(price >= 0) this.refs.buySteem_amount.value = roundDown(parseFloat(total) / price, 3).toFixed(3)
                                                 validateBuySteem()
-                                            }}>Available:</a> {account.sbd_balance.replace('SBD', 'SD')}
+                                            }}>Disponible:</a> {account.sbd_balance.replace('SBD', 'SD')}
                                     </small></div>}
 
                                     <div><small>
@@ -383,7 +383,7 @@ class Market extends React.Component {
                                             this.refs.buySteem_price.value = ticker.lowest_ask
                                             if(amount >= 0) this.refs.buySteem_total.value = roundUp(amount * price, 3).toFixed(3)
                                             validateBuySteem()
-                                        }}>Lowest ask:</a> {ticker.lowest_ask.toFixed(6)}
+                                        }}>Pedido mas bajo:</a> {ticker.lowest_ask.toFixed(6)}
                                     </small></div>
                                 </div>
                             </div>
@@ -393,12 +393,12 @@ class Market extends React.Component {
 
 
                     <div className="small-12 medium-6 columns">
-                        <h4 className="sell-color">SELL STEEM</h4>
+                        <h4 className="sell-color">Vender STEEM</h4>
 
                         <form className="Market__orderform" onSubmit={sellSteem}>
                             <div className="row">
                                 <div className="column small-3 large-2">
-                                    <label>Price</label>
+                                    <label>Precio</label>
                                 </div>
                                 <div className="column small-9 large-8">
                                     <div className="input-group">
@@ -416,7 +416,7 @@ class Market extends React.Component {
 
                             <div className="row">
                                 <div className="column small-3 large-2">
-                                    <label>Amount</label>
+                                    <label>Monto</label>
                                 </div>
                                 <div className="column small-9 large-8">
                                     <div className="input-group">
@@ -451,7 +451,7 @@ class Market extends React.Component {
                             <div className="row">
                                 <div className="column small-3 large-2"></div>
                                 <div className="column small-9 large-8">
-                                    <input disabled={sell_disabled} type="submit" className="button hollow sell-color float-right" value="SELL STEEM" />
+                                    <input disabled={sell_disabled} type="submit" className="button hollow sell-color float-right" value="Vender STEEM" />
                                     {account &&
                                         <div><small><a href="#" onClick={e => {e.preventDefault()
                                             const price = parseFloat(this.refs.sellSteem_price.value)
@@ -466,7 +466,7 @@ class Market extends React.Component {
                                         this.refs.sellSteem_price.value = price
                                         if(amount >= 0) this.refs.sellSteem_total.value = roundDown(parseFloat(price) * amount, 3)
                                         validateSellSteem()
-                                    }}>Highest bid:</a> {ticker.highest_bid.toFixed(6)}</small></div>
+                                    }}>Oferta mas alta:</a> {ticker.highest_bid.toFixed(6)}</small></div>
                                 </div>
                             </div>
                         </form>
@@ -476,7 +476,7 @@ class Market extends React.Component {
                 <div className="row show-for-medium">
 
                     <div className="small-12 medium-6 large-4 columns">
-                        <h4>Buy Orders</h4>
+                        <h4>Ordenes de compra</h4>
                         <Orderbook
                             side={"bids"}
                             orders={orderbook.bids}
@@ -487,7 +487,7 @@ class Market extends React.Component {
                     </div>
 
                     <div className="small-12 medium-6 large-4 columns">
-                        <h4>Sell Orders</h4>
+                        <h4>Ordenes de venta</h4>
                         <Orderbook
                             side={"asks"}
                             orders={orderbook.asks}
@@ -498,7 +498,7 @@ class Market extends React.Component {
                     </div>
 
                     <div className="small-12 large-4 column">
-                        <h4>Trade History</h4>
+                        <h4>Historial de intercambio</h4>
                         {trade_history_table(this.props.history)}
                     </div>
                 </div>
@@ -506,7 +506,7 @@ class Market extends React.Component {
                 {account &&
                     <div className="row">
                         <div className="column">
-                            <h4>Open Orders</h4>
+                            <h4>Ordenes abiertas</h4>
                             {open_orders_table(open_orders)}
                         </div>
                     </div>}
@@ -536,7 +536,7 @@ module.exports = {
             });
         },
         reload: (username) => {
-          console.log("Reload market state...")
+          console.log("Refrescar estado del mercado...")
           dispatch({type: 'market/UPDATE_MARKET', payload: {username: username}})
         },
         cancelOrder: (owner, orderid, successCallback) => {
