@@ -139,7 +139,7 @@ export default createModule({
         {
             action: 'FETCHING_DATA',
             reducer: (state, {payload: {order, category}}) => {
-                const new_state = state.updateIn(['status', category || '', order], () => {
+                const new_state = state.updateIn(['status', category || 'spanish', order], () => {
                     return {fetching: true};
                 });
                 return new_state;
